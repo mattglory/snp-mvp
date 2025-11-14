@@ -19,8 +19,7 @@
 8. [Market Analysis](#market-analysis)
 9. [Roadmap](#roadmap)
 10. [Team & Track Record](#team--track-record)
-11. [Funding Request](#funding-request)
-12. [Code4STX Evaluation](#code4stx-evaluation)
+11. [Code4STX Evaluation](#code4stx-evaluation)
 
 ---
 
@@ -1248,117 +1247,6 @@ I'm committed to SNP's success beyond Code4STX funding. This isn't just a grant 
 
 ---
 
-## FUNDING REQUEST
-
-### Budget Breakdown
-
-**Total Requested: $9,000 - $11,000**
-
-#### 1. Professional Security Audit: $5,000 - $7,000
-**Purpose:** Third-party security audit before mainnet launch
-
-**Deliverables:**
-- Comprehensive code review of all 15 contracts
-- Vulnerability assessment and penetration testing
-- Gas optimization recommendations
-- Security best practices implementation
-- Final audit report and certification
-
-**Timeline:** 6-8 weeks
-
-**Importance:** CRITICAL - Cannot safely deploy to mainnet without professional audit. Users will be depositing real Bitcoin-backed assets.
-
-#### 2. Testnet Deployment & Beta Testing: $1,000
-**Purpose:** Testnet deployment costs and beta user incentives
-
-**Breakdown:**
-- Testnet STX for contract deployment: $200
-- Beta user incentive rewards (100 users): $500
-- Testing infrastructure (hosting, tools): $300
-
-**Timeline:** 3 months
-
-**Importance:** HIGH - Need real user testing before mainnet to identify bugs and gather feedback.
-
-#### 3. Development & Optimization: $1,500
-**Purpose:** Post-audit improvements and bug fixes
-
-**Breakdown:**
-- Gas optimization implementation: $500
-- Bug fixes from beta testing: $500
-- Audit finding remediation: $500
-
-**Timeline:** 2 months
-
-**Importance:** MEDIUM - Continuous improvement based on testing and audit feedback.
-
-#### 4. Marketing & Launch: $1,500
-**Purpose:** Community awareness and user onboarding
-
-**Breakdown:**
-- Technical documentation and guides: $500
-- Community engagement and support: $500
-- Launch marketing materials: $500
-
-**Timeline:** Ongoing
-
-**Importance:** MEDIUM - Need to attract users and build community trust.
-
-### Expected Outcomes
-
-**With $9,000 Funding:**
-- Professional security audit (essential)
-- Comprehensive testnet testing (100 users)
-- Mainnet launch readiness
-- Basic marketing and documentation
-
-**With $11,000 Funding:**
-- Professional security audit (comprehensive)
-- Extended testnet testing (100+ users with better incentives)
-- Mainnet launch readiness
-- Professional marketing campaign
-- Community building initiatives
-
-### Budget Justification
-
-**Why Security Audit is 50-60% of Budget:**
-- Most critical component for user safety
-- Industry standard for DeFi protocols
-- Protects against smart contract exploits
-- Required for institutional trust
-- One-time investment with long-term benefit
-
-**Alternative Without Funding:**
-Without Code4STX funding, SNP would:
-- Deploy without professional audit (risky)
-- Limited testnet testing (fewer users)
-- Minimal marketing (slow growth)
-- Extended timeline (seeking other funding)
-
-**Return on Investment:**
-- First automated yield aggregator on Stacks
-- Fills critical infrastructure gap
-- Expected $1M+ TVL within 6 months
-- Attracts new capital to Stacks ecosystem
-- Open source contribution for community
-
-### Revenue Sustainability
-
-**Post-Launch Revenue:**
-SNP is designed to be self-sustaining through performance fees:
-
-- 0.5% fee on withdrawals
-- $1M TVL × 50% turnover = $2,500 annual revenue
-- $10M TVL × 50% turnover = $25,000 annual revenue
-
-**Revenue Allocation:**
-- 50% - Ongoing security audits and improvements
-- 30% - Protocol expansion (new strategies)
-- 20% - Team compensation and growth
-
-**Not a Grant Dependency:**
-Code4STX funding is for initial launch. Post-launch, SNP generates revenue to sustain development and growth independently.
-
 ---
 
 ## CODE4STX EVALUATION
@@ -1633,38 +1521,50 @@ SNP represents a **production-ready, well-tested, and market-ready** DeFi protoc
    - Attracts new capital to Stacks
    - Strengthens entire DeFi ecosystem
 
-### Funding Request
+### Project Status & Next Steps
 
-**Medium-Level Grant: $5,000**
+**Current Status: Production-Ready MVP**
 
-Based on Stacks Ascent's five-level grant structure (up to $7,000 maximum), SNP qualifies for a **medium-level grant** given its:
-- Production-ready MVP (15 contracts, 3,200+ lines)
-- 100% test success rate (28/28 tests)
-- Proven track record (3 previous Code4STX completions)
-- First-mover innovation (sBTC-native aggregator)
+SNP is ready for deployment with:
+- ✅ 15 smart contracts (3,200+ lines, 0 errors)
+- ✅ 100% test success rate (28/28 tests)
+- ✅ Security features implemented
+- ✅ Professional documentation
+- ✅ Frontend dashboard complete
 
-**Grant Allocation:**
-- Testnet deployment & beta testing: $2,000
-  - Deploy all contracts to testnet
-  - Recruit and support 100+ beta testers
-  - Bug fixes and optimization
-  
-- Security audit preparation: $2,000
-  - Document all security considerations
-  - Implement audit firm recommendations
-  - Code review and hardening
-  
-- Community building & marketing: $1,000
-  - Educational content creation
-  - Community engagement
-  - Launch materials
+**Immediate Next Steps:**
 
-**Expected Results:**
-- Mainnet launch within 6 months
-- 1,000+ users in first year
-- $1M+ TVL in 6 months
-- First automated yield aggregator on Stacks
-- Open source contribution to community
+**Phase 1: Testnet Deployment (Weeks 1-4)**
+- Deploy all contracts to Stacks testnet
+- Internal testing with 10-20 beta users
+- Bug fixes and optimization
+- Performance monitoring
+
+**Phase 2: Public Beta (Months 2-3)**
+- Recruit 50-100 beta testers from community
+- Gather user feedback and testimonials
+- Stress testing under real conditions
+- Community building and education
+
+**Phase 3: Mainnet Launch (Month 4)**
+- Security review and final hardening
+- Mainnet deployment
+- Soft launch with beta users
+- Gradual public rollout
+
+**Long-term Vision:**
+- Professional security audit after initial traction
+- Expand to 15+ protocol integrations
+- Multi-asset support (sBTC, USDA, STX)
+- $1M+ TVL within 6 months of mainnet
+- Become the standard yield aggregator for Stacks ecosystem
+
+**Open Source Contribution:**
+This project will remain open source, contributing to the Stacks ecosystem by providing:
+- Reusable strategy integration patterns
+- Production-ready DeFi architecture examples
+- Security best practices for yield aggregators
+- Educational resources for Stacks builders
 
 ### Next Steps
 
