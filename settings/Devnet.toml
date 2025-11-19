@@ -1,4 +1,4 @@
-﻿[network]
+[network]
 name = "devnet"
 deployment_fee_rate = 10
 

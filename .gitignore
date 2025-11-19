@@ -2,6 +2,7 @@
 .cache/
 settings/Testnet.toml
 settings/Mainnet.toml
+Clarinet.toml  # Contains wallet mnemonic - use Clarinet.toml.example instead
 
 # Environment variables
 .env
@@ -14,6 +15,12 @@ node_modules/
 dist/
 build/
 *.log
+
+# Testing
+coverage/
+.vitest/
+*.test-results/
+test-results.json
 
 # IDE
 .vscode/

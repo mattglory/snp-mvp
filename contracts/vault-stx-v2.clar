@@ -42,7 +42,7 @@
 (define-data-var total-assets uint u0)
 (define-data-var active-strategy (optional principal) none)
 (define-data-var paused bool false)
-(define-data-var performance-fee-bps uint u50) ;; 0.5% = 50 basis points
+(define-data-var performance-fee-bps uint u800) ;; 8% = 800 basis points (Industry competitive: 60% cheaper than Yearn 20%, better than Beefy 9.5%)
 (define-data-var initialized bool false)
 
 ;; Maps

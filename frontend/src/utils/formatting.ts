@@ -93,7 +93,7 @@ export function calculateAmount(shares: number, sharePrice: number): number {
 export function isValidAmount(amount: string): boolean {
   try {
     const num = new Big(amount);
-    return num.gt(0) && !num.isNaN();
+    return num.gt(0);
   } catch {
     return false;
   }

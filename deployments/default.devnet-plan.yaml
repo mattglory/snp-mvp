@@ -109,7 +109,7 @@ plan:
         - contract-publish:
             contract-name: vault-stx-v2
             expected-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
-            cost: 100120
+            cost: 100870
             path: "contracts\\vault-stx-v2.clar"
             anchor-block-only: true
             clarity-version: 1

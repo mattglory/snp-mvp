@@ -11,20 +11,9 @@ boot_contracts = ["pox-4"]
 # CORE CONTRACTS
 # ========================================
 
-# Core Vault Contracts (3 risk profiles)
-# Balanced Vault (default - moderate risk/reward)
+# Core Vault Contract
 [contracts.vault-stx-v2]
 path = "contracts/vault-stx-v2.clar"
-clarity_version = 1
-
-# Conservative Vault (low risk, stable yields)
-[contracts.vault-conservative]
-path = "contracts/vault-conservative.clar"
-clarity_version = 1
-
-# Growth Vault (higher risk, maximum yields)
-[contracts.vault-growth]
-path = "contracts/vault-growth.clar"
 clarity_version = 1
 
 # Governance
@@ -102,20 +91,6 @@ path = "contracts/strategy-granite-v1.clar"
 clarity_version = 1
 
 # ========================================
-# OPTIONAL MONITORING & ANALYTICS
-# ========================================
-
-# Monitoring Dashboard
-# [contracts.monitoring-dashboard]
-# path = "contracts/monitoring-dashboard.clar"
-# clarity_version = 1
-
-# Protocol Analytics
-# [contracts.protocol-analytics]
-# path = "contracts/protocol-analytics.clar"
-# clarity_version = 1
-
-# ========================================
 # REPL CONFIGURATION
 # ========================================
 
@@ -126,9 +101,23 @@ passes = ["check_checker"]
 checker = "transactions"
 
 # ========================================
-# ACCOUNTS
+# ACCOUNTS - SECURITY WARNING
 # ========================================
+# 
+# 🔐 IMPORTANT SECURITY INSTRUCTIONS:
+# 
+# 1. Copy this file to "Clarinet.toml" (without .example)
+# 2. Add your REAL mnemonic phrase to Clarinet.toml
+# 3. Clarinet.toml is in .gitignore - it will NOT be committed
+# 4. NEVER share or commit your real mnemonic anywhere!
+#
+# This .example file is safe to commit - it only has placeholders.
+#
 
 [accounts.deployer]
-mnemonic = "YOUR_MNEMONIC_HERE"  # ⚠️ NEVER commit your real mnemonic to GitHub!
+mnemonic = "YOUR_MNEMONIC_HERE"  # Replace with actual mnemonic in Clarinet.toml (not this file!)
+balance = 100_000_000_000_000
+
+[accounts.wallet_1]
+mnemonic = "YOUR_MNEMONIC_HERE"  # Replace with actual mnemonic in Clarinet.toml (not this file!)
 balance = 100_000_000_000_000
