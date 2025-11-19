@@ -303,17 +303,18 @@ Visit `http://localhost:3000` to see the multi-vault interface.
 
 ## 👨‍💻 Developer
 
-**Matt Glory**  
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
-- **Previous Code4STX**: 3 successful submissions
+**Matt Glory - Builder**  
+- **GitHub**: [@mattglory](https://github.com/mattglory)
+- **Twitter**: [@mattglory14](https://twitter.com/mattglory14)
+- **Discord**: geoglory
+- **Previous Code4STX**: 4 Stacks projects completed
 
 ### Development Experience
 
 - 2+ years software development
-- Trading bot development (Hummingbot)
-- 4+ months Stacks blockchain experience
 - LearnWeb3.io Stacks Developer Degree
+- 4 completed Stacks projects
+- Experienced in trading bot development
 
 ---
 

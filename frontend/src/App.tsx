@@ -219,19 +219,19 @@ function App() {
               SNP - First Automated Yield Aggregator on Stacks Bitcoin L2
             </p>
             <p className="mb-2">
-              Built with ₿ by Matt Glory • Production-Ready MVP • 100% Test Success
+              Built with ₿ by Matt Glory (@mattglory) • Production-Ready MVP • 100% Test Success
             </p>
             <div className="flex justify-center gap-4 text-xs mt-4">
               <a href="https://github.com/mattglory/snp-mvp" className="hover:text-bitcoin-orange transition-colors">
                 GitHub
               </a>
               <span>•</span>
-              <a href="https://docs.snp-protocol.com" className="hover:text-bitcoin-orange transition-colors">
-                Documentation
+              <a href="https://twitter.com/mattglory14" className="hover:text-bitcoin-orange transition-colors">
+                Twitter @mattglory14
               </a>
               <span>•</span>
-              <a href="https://twitter.com/SNPProtocol" className="hover:text-bitcoin-orange transition-colors">
-                Twitter
+              <a href="https://discord.com" className="hover:text-bitcoin-orange transition-colors">
+                Discord: geoglory
               </a>
             </div>
           </div>

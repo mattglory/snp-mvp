@@ -201,17 +201,15 @@ x 0 errors detected
 
 ## 📞 Contact Information
 
-**Developer**: Matt Glory  
-**Email**: [Your email]  
-**GitHub**: [GitHub profile]  
-**Twitter**: [Twitter handle]  
-**Discord**: [Discord handle]  
+**Developer**: Matt Glory - Builder  
+**GitHub**: [@mattglory](https://github.com/mattglory)  
+**Twitter**: [@mattglory14](https://twitter.com/mattglory14)  
+**Discord**: geoglory  
 
 **Project Links**:
-- GitHub Repository: [URL]
-- Documentation: [URL]
-- Demo Video: [URL when available]
-- Testnet Deployment: [URL when available]
+- GitHub Repository: https://github.com/mattglory/snp-mvp
+- Documentation: See README.md
+- Branch: code4stx-submission
 
 ---
 
