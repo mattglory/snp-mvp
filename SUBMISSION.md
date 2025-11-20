@@ -2,11 +2,12 @@
 
 ## Submission Details
 
-**Date**: [Insert submission date]  
+**Date**: November 20, 2025  
 **Track**: Fourth Code4STX Entry  
 **Project**: SNP (Stacks Nexus Protocol) - Bitcoin's First Automated Yield Aggregator  
-**Developer**: Matt Glory  
-**GitHub**: [Repository URL]  
+**Developer**: Matt Glory (@mattglory)  
+**GitHub**: https://github.com/mattglory/snp-mvp  
+**Branch**: code4stx-submission  
 
 ---
 
