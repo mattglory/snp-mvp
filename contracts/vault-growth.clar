@@ -177,7 +177,7 @@
     (asserts! (not (var-get paused)) ERR-PAUSED)
     (asserts! (>= user-balance shares) ERR-INSUFFICIENT-SHARES)
     (asserts! (>= net-amount min-amount-out) ERR-SLIPPAGE-EXCEEDED)
-    (asserts! (<= block-height deadline) ERR-DEADLINE-PASSED)
+    (asserts! (<= burn-block-height deadline) ERR-DEADLINE-PASSED)
     
     ;; Burn shares
     (try! (ft-burn? vault-shares-growth shares caller))
@@ -209,7 +209,7 @@
       gross-amount: gross-amount,
       fee: fee,
       net-amount: net-amount,
-      current-block: block-height
+      current-block: burn-block-height
     })))
 
 ;; Strategy trait for type checking

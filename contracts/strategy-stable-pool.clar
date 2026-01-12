@@ -123,7 +123,7 @@
     )
       ;; Update tracking
       (var-set total-rewards (+ (var-get total-rewards) simulated-yield))
-      (var-set last-harvest block-height)
+      (var-set last-harvest burn-block-height)
       (var-set total-assets (+ (var-get total-assets) simulated-yield))
       
       (ok simulated-yield))))

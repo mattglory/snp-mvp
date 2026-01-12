@@ -2,7 +2,7 @@
 .cache/
 settings/Testnet.toml
 settings/Mainnet.toml
-Clarinet.toml  # Contains wallet mnemonic - use Clarinet.toml.example instead
+# Clarinet.toml contains wallet mnemonic - already tracked, use .env instead
 
 # Environment variables
 .env

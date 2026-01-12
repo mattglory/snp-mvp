@@ -112,7 +112,7 @@
     ;; Check if STX is unlocked
     (asserts! (or 
       (is-eq (var-get stacked-amount) u0)
-      (>= block-height (var-get unlock-height))) 
+      (>= burn-block-height (var-get unlock-height))) 
       ERR_CYCLE_NOT_COMPLETE)
     
     ;; Transfer STX to caller
@@ -149,7 +149,7 @@
   ;; For now, simulate stacking
   (begin
     (var-set current-cycle (+ burn-block-height u1))
-    (var-set unlock-height (+ block-height (* num-cycles u2100))) ;; ~2100 blocks per cycle
+    (var-set unlock-height (+ burn-block-height (* num-cycles u2100))) ;; ~2100 blocks per cycle
     (ok true)))
 
 ;; ========================================
@@ -183,7 +183,7 @@
     stacked: (var-get stacked-amount),
     unlock-at: (var-get unlock-height),
     current-cycle: (var-get current-cycle),
-    is-locked: (< block-height (var-get unlock-height)),
+    is-locked: (< burn-block-height (var-get unlock-height)),
     btc-address: (var-get btc-reward-address),
     pool: (var-get stacking-pool)
   }))
@@ -196,5 +196,5 @@
   (ok {
     is-healthy: true,
     is-stacking: (> (var-get stacked-amount) u0),
-    can-withdraw: (>= block-height (var-get unlock-height))
+    can-withdraw: (>= burn-block-height (var-get unlock-height))
   }))

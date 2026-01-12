@@ -8,12 +8,21 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
+    "test:coverage:ui": "vitest --ui --coverage",
+    "coverage:report": "vitest run --coverage --reporter=html",
+    "coverage:check": "vitest run --coverage --reporter=json",
+    "test:integration": "vitest run tests/integration-user-journey.test.ts",
+    "test:gas": "vitest run tests/gas-optimization.test.ts",
+    "test:chaos": "vitest run tests/chaos-testing.test.ts",
+    "test:all": "npm run test:integration && npm run test:gas && npm run test:chaos",
     "fix:bom": "node PRIVATE/fix-bom.js",
     "pretest": "node PRIVATE/fix-bom.js"
   },
   "devDependencies": {
     "@hirosystems/clarinet-sdk": "^3.8.1",
     "@stacks/transactions": "^7.3.0",
+    "@vitest/coverage-v8": "^4.0.10",
+    "@vitest/ui": "^4.0.10",
     "vitest": "^4.0.10"
   }
 }

@@ -95,7 +95,7 @@
         active: true,
         allocated: u0,
         total-earned: u0,
-        last-harvest: block-height,
+        last-harvest: burn-block-height,
         emergency: false,
         health-score: u100
       })
@@ -106,7 +106,7 @@
         total-deposits: u0,
         total-withdrawals: u0,
         harvest-count: u0,
-        last-apy-update: block-height
+        last-apy-update: burn-block-height
       })
       
       ;; Update active strategies list
@@ -266,7 +266,7 @@
           (map-set strategies strategy
             (merge strategy-data { 
               total-earned: (+ (get total-earned strategy-data) rewards),
-              last-harvest: block-height
+              last-harvest: burn-block-height
             }))
           ;; Update performance tracking
           (let ((perf (unwrap-panic (map-get? strategy-performance strategy))))

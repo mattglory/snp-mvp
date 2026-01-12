@@ -2,11 +2,11 @@
 
 ## Submission Details
 
-**Date**: November 20, 2025  
-**Track**: Fourth Code4STX Entry  
-**Project**: SNP (Stacks Nexus Protocol) - Bitcoin's First Automated Yield Aggregator  
-**Developer**: Matt Glory (@mattglory)  
-**GitHub**: https://github.com/mattglory/snp-mvp  
+**Date**: January 12, 2026
+**Track**: Fourth Code4STX Entry
+**Project**: SNP (Stacks Nexus Protocol) - Bitcoin's First Automated Yield Aggregator
+**Developer**: Matt Glory (@mattglory)
+**GitHub**: https://github.com/mattglory/snp-mvp
 **Branch**: code4stx-submission  
 
 ---
@@ -158,8 +158,8 @@ x 0 errors detected
 ## 📊 Market Opportunity
 
 **Total Addressable Market**:
-- Stacks TVL: $161.5M (November 2024)
-- sBTC launched: November 2024
+- Stacks TVL: $161.5M (November 2025)
+- sBTC launched: November 2025
 - Current automated yield aggregators: **0**
 - Market gap: **100% unaddressed**
 
@@ -261,4 +261,4 @@ Thank you to:
 
 ---
 
-*Built with ₿ on Stacks | Fourth Code4STX Submission | January 2025*
+*Built with ₿ on Stacks | Fourth Code4STX Submission | January 12, 2026*
