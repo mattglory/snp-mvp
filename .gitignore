@@ -55,6 +55,12 @@ deployments/*.applied
 BTC-FI-Application/
 *-Application/
 
+# Outdated/private project files
+ACTION-PLAN-SUMMARY.md
+YOUR-DEPLOYMENT.md
+SENIOR-DEV-REVIEW.md
+IMPLEMENTATION-COMPLETE.md
+
 # Personal information
 PERSONAL-*.md
 personal-*.md

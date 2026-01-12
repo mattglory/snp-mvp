@@ -15,10 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Clarinet
-        uses: hirosystems/clarinet-action@v1
-        with:
-          version: latest
+      - name: Install Clarinet
+        run: |
+          wget -nv https://github.com/hirosystems/clarinet/releases/download/v2.11.0/clarinet-linux-x64.tar.gz
+          tar -xzf clarinet-linux-x64.tar.gz
+          chmod +x ./clarinet
+          sudo mv ./clarinet /usr/local/bin/
+          clarinet --version
 
       - name: Check contracts compile
         run: clarinet check
