@@ -95,13 +95,13 @@
     ;; Update user tracking
     (let (
       (existing-supply (default-to 
-        { amount: u0, interest-index: current-index, last-update: block-height }
+        { amount: u0, interest-index: current-index, last-update: burn-block-height }
         (map-get? user-supplies caller)))
     )
       (map-set user-supplies caller {
         amount: (+ (get amount existing-supply) amount),
         interest-index: current-index,
-        last-update: block-height
+        last-update: burn-block-height
       })
       
       ;; Update total tracking
@@ -145,7 +145,7 @@
         (map-set user-supplies caller {
           amount: (- (get amount user-supply) amount),
           interest-index: (var-get cumulative-interest-index),
-          last-update: block-height
+          last-update: burn-block-height
         })
       )
       
@@ -176,17 +176,17 @@
     
     (let (
       ;; Calculate interest earned since last harvest
-      (blocks-since-harvest (- block-height (var-get last-harvest-block)))
+      (blocks-since-harvest (- burn-block-height (var-get last-harvest-block)))
       ;; 16.80% APY = ~0.046% per day (assuming ~144 blocks/day)
       (interest-earned (/ (* (var-get total-stx-supplied) u1680 blocks-since-harvest) u5256000))
     )
       ;; Update tracking
       (var-set total-interest-earned (+ (var-get total-interest-earned) interest-earned))
-      (var-set last-harvest-block block-height)
+      (var-set last-harvest-block burn-block-height)
       (var-set total-stx-supplied (+ (var-get total-stx-supplied) interest-earned))
       
       ;; Record rate for this period
-      (map-set historical-rates block-height u1680)
+      (map-set historical-rates burn-block-height u1680)
       
       ;; Return harvested amount for trait compliance
       (ok interest-earned)
@@ -198,7 +198,7 @@
 (define-private (update-interest-index)
   (let (
     (last-update (var-get last-interest-update))
-    (blocks-elapsed (- block-height last-update))
+    (blocks-elapsed (- burn-block-height last-update))
   )
     (if (> blocks-elapsed u0)
       (let (
@@ -210,7 +210,7 @@
         (new-index (+ current-index (/ (* current-index interest-per-block blocks-elapsed) u10000)))
       )
         (var-set cumulative-interest-index new-index)
-        (var-set last-interest-update block-height)
+        (var-set last-interest-update burn-block-height)
         (ok new-index)
       )
       (ok (var-get cumulative-interest-index))

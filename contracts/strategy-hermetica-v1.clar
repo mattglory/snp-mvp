@@ -86,7 +86,7 @@
             (map-set user-vaults tx-sender {
                 collateral: amount,
                 debt: usdh-amount,
-                last-update: block-height
+                last-update: burn-block-height
             })
             
             ;; USDh is lent out to earn yield
@@ -120,7 +120,7 @@
             (var-set total-hmt-earned (+ (var-get total-hmt-earned) 
                                         (+ lending-yield hmt-rewards)))
             (var-set harvest-count (+ (var-get harvest-count) u1))
-            (var-set last-harvest-block block-height)
+            (var-set last-harvest-block burn-block-height)
             (ok (+ lending-yield hmt-rewards)))))
 
 (define-public (compound)
@@ -169,5 +169,5 @@
 
 ;; Init
 (begin
-    (var-set last-harvest-block block-height)
-    (print {event: "hermetica-strategy-deployed", block: block-height}))
+    (var-set last-harvest-block burn-block-height)
+    (print {event: "hermetica-strategy-deployed", block: burn-block-height}))

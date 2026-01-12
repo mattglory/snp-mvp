@@ -65,11 +65,11 @@
         (asserts! (is-authorized) ERR_UNAUTHORIZED)
         
         ;; Simulate yield generation (5% APY)
-        (let ((blocks-since-last (- block-height (var-get last-harvest-block)))
+        (let ((blocks-since-last (- burn-block-height (var-get last-harvest-block)))
               (rewards (/ (* (var-get total-deployed) SIMULATED_APY blocks-since-last) u52560000)))
             
             (var-set total-rewards (+ (var-get total-rewards) rewards))
-            (var-set last-harvest-block block-height)
+            (var-set last-harvest-block burn-block-height)
             (ok rewards))))
 
 ;; Admin
@@ -91,4 +91,4 @@
         (ok true)))
 
 (begin
-    (var-set last-harvest-block block-height))
+    (var-set last-harvest-block burn-block-height))

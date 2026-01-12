@@ -19,7 +19,7 @@
 (contract-call? .vault-stx-v2 get-vault-stx-balance)
 
 ;; Expected Results:
-;; ✅ User receives ~200 STX back (minus 0.5% fee)
+;; ✅ User receives ~184 STX back (minus 8% fee)
 ;; ✅ Share balance decreases by 200000000
 ;; ✅ Vault balance decreases
 ;; ✅ Total assets decreases

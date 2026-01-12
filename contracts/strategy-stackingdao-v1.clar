@@ -161,7 +161,7 @@
       ;; Update tracking
       (map-set cycle-rewards previous-cycle rewards-amount)
       (var-set total-rewards-earned (+ (var-get total-rewards-earned) rewards-amount))
-      (var-set last-harvest-block block-height)
+      (var-set last-harvest-block burn-block-height)
       (var-set current-cycle current-cycle-num)
       
       ;; Return harvested amount for trait compliance
@@ -175,7 +175,7 @@
   ;; In production: query actual PoX cycle from blockchain
   ;; For now: estimate based on block height
   ;; Each cycle is approximately 2,100 blocks (~2 weeks)
-  (/ block-height u2100)
+  (/ burn-block-height u2100)
 )
 
 (define-private (calculate-stacking-rewards (amount uint) (start-cycle uint) (end-cycle uint))

@@ -375,9 +375,9 @@
       ;; Preview to see fee
       (let ((preview (unwrap-panic (contract-call? .vault-stx-v2 preview-withdraw shares))))
         
-        ;; Fee should be 0.5% of gross
-        ;; 0.5% = 50 basis points / 10000
-        (let ((expected-fee (/ (* (get gross-amount preview) u50) u10000)))
+        ;; Fee should be 8% of gross
+        ;; 8% = 800 basis points / 10000
+        (let ((expected-fee (/ (* (get gross-amount preview) u800) u10000)))
           (asserts! (is-eq (get fee preview) expected-fee)
             (err "Fee calculation incorrect"))
           

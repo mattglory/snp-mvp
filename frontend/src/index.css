@@ -9,8 +9,82 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0F0F0F;
+  color: #FAFAFA;
 }
 
+@layer components {
+  /* Card Styles */
+  .card {
+    @apply bg-dark-surface border border-dark-border rounded-xl p-6 shadow-card;
+  }
+
+  .stat-card {
+    @apply card hover:shadow-card-hover transition-all duration-300;
+  }
+
+  /* Text Styles */
+  .gradient-text {
+    @apply bg-gradient-to-r from-bitcoin-orange to-bitcoin-orange-light bg-clip-text text-transparent;
+  }
+
+  .stat-label {
+    @apply text-sm font-medium text-gray-400 mb-2;
+  }
+
+  .stat-value {
+    @apply text-3xl font-bold;
+  }
+
+  .apy-display {
+    @apply text-4xl font-bold text-bitcoin-orange;
+  }
+
+  /* Button Styles */
+  .btn-primary {
+    @apply px-6 py-3 bg-bitcoin-orange hover:bg-bitcoin-orange-dark text-white font-semibold rounded-lg transition-all duration-200 shadow-bitcoin hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-dark-surface hover:bg-dark-surface-hover border border-dark-border text-white font-semibold rounded-lg transition-all duration-200;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-success {
+    @apply bg-success/20 text-success border border-success/30;
+  }
+
+  .badge-warning {
+    @apply bg-warning/20 text-warning border border-warning/30;
+  }
+
+  .badge-error {
+    @apply bg-error/20 text-error border border-error/30;
+  }
+
+  .badge-bitcoin {
+    @apply bg-bitcoin-orange/20 text-bitcoin-orange border border-bitcoin-orange/30;
+  }
+
+  /* Dark card variant */
+  .dark-card {
+    @apply bg-[#1a1a1a];
+  }
+
+  .dark-border {
+    @apply border-[#2a2a2a];
+  }
+
+  .dark-bg {
+    @apply bg-[#0F0F0F];
+  }
+}
+
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -36,4 +110,22 @@ body {
 
 .animate-shimmer {
   animation: shimmer 2s infinite;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F7931A;
 }

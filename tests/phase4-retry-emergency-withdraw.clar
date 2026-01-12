@@ -37,5 +37,5 @@
 ;; ✅ Emergency withdraw successful
 ;; ✅ Vault liquidity increased to ~200 STX
 ;; ✅ User withdrawal succeeds
-;; ✅ User receives ~199 STX (minus 0.5% fee)
+;; ✅ User receives ~184 STX (minus 8% fee)
 ;; ✅ User shares reduced to 800000000

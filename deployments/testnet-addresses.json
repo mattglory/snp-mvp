@@ -1,0 +1,19 @@
+{
+  "vault-stx-v2": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.vault-stx-v2",
+  "strategy-velar-farm": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-velar-farm",
+  "strategy-stackingdao-v1": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-stackingdao-v1",
+  "strategy-manager-v2": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-manager-v2",
+  "strategy-stackswap-v1": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-stackswap-v1",
+  "strategy-stable-pool": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-stable-pool",
+  "strategy-granite-v1": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-granite-v1",
+  "strategy-zest-v1": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-zest-v1",
+  "strategy-stx-stacking": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-stx-stacking",
+  "strategy-hermetica-v1": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-hermetica-v1",
+  "vault-conservative": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.vault-conservative",
+  "strategy-sbtc-v1": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-sbtc-v1",
+  "governance": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.governance",
+  "strategy-alex-stx-usda": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-alex-stx-usda",
+  "vault-growth": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.vault-growth",
+  "strategy-bitflow-v1": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-bitflow-v1",
+  "strategy-arkadiko-vault": "ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-arkadiko-vault"
+}

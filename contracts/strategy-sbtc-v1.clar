@@ -131,7 +131,7 @@
     )
       ;; Update tracking
       (var-set total-yield-earned (+ (var-get total-yield-earned) simulated-yield))
-      (var-set last-harvest-block block-height)
+      (var-set last-harvest-block burn-block-height)
       (var-set total-sbtc-deposited (+ (var-get total-sbtc-deposited) simulated-yield))
       
       ;; Return just the yield amount (trait compliance)

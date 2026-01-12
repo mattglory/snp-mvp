@@ -14,7 +14,12 @@ export const CONFIG = {
 
   // Contract Addresses (Testnet)
   contracts: {
-    vault: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.vault-stx-v2',
+    // Three Vault Options
+    vaults: {
+      balanced: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.vault-stx-v2',
+      conservative: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.vault-conservative',
+      growth: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.vault-growth',
+    },
     strategyManager: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-manager-v2',
     
     // Strategy Contracts
@@ -119,6 +124,49 @@ export const CONFIG = {
       targetAPY: 6.0,
       riskLevel: 'low' as const,
       category: 'Stacking',
+    },
+  },
+
+  // Vault Metadata - 3 Risk Profiles
+  vaultMetadata: {
+    balanced: {
+      id: 'balanced',
+      name: 'Balanced Vault',
+      symbol: 'snSTX',
+      description: 'Optimized balance of risk and reward',
+      targetAPY: '12-16%',
+      riskScore: 3,
+      riskLevel: 'medium' as const,
+      strategyFocus: 'Diversified yield optimization',
+      performanceFee: 8,
+      icon: '⚖️',
+      gradient: 'from-bitcoin-orange to-yellow-600',
+    },
+    conservative: {
+      id: 'conservative',
+      name: 'Conservative Vault',
+      symbol: 'snSTX-CONS',
+      description: 'Low-risk strategies for capital preservation',
+      targetAPY: '8-10%',
+      riskScore: 2,
+      riskLevel: 'low' as const,
+      strategyFocus: 'Stable yields, capital preservation',
+      performanceFee: 8,
+      icon: '🛡️',
+      gradient: 'from-success to-emerald-600',
+    },
+    growth: {
+      id: 'growth',
+      name: 'Growth Vault',
+      symbol: 'snSTX-GRTH',
+      description: 'High-yield strategies for maximum returns',
+      targetAPY: '18-25%',
+      riskScore: 4,
+      riskLevel: 'high' as const,
+      strategyFocus: 'Maximum yields, higher risk tolerance',
+      performanceFee: 8,
+      icon: '🚀',
+      gradient: 'from-purple-500 to-pink-600',
     },
   },
 

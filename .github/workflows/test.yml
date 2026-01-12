@@ -1,0 +1,50 @@
+name: SNP Protocol CI/CD
+
+on:
+  push:
+    branches: [main, code4stx-submission]
+  pull_request:
+    branches: [main]
+
+jobs:
+  contract-checks:
+    name: Contract Compilation & Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Clarinet
+        uses: hirosystems/clarinet-action@v1
+        with:
+          version: latest
+
+      - name: Check contracts compile
+        run: clarinet check
+
+  typescript-tests:
+    name: TypeScript Test Suite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+        env:
+          CI: true
+
+      - name: Generate coverage report
+        run: npm run test:coverage
+        continue-on-error: true

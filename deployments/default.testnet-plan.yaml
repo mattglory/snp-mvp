@@ -9,108 +9,66 @@ plan:
     - id: 0
       transactions:
         - contract-publish:
-            contract-name: governance
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 73700
-            path: "contracts\\governance.clar"
-            anchor-block-only: true
-            clarity-version: 1
-        - contract-publish:
             contract-name: strategy-alex-stx-usda
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 32430
+            expected-sender: ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA
+            cost: 33200
             path: "contracts\\strategy-alex-stx-usda.clar"
             anchor-block-only: true
             clarity-version: 1
         - contract-publish:
             contract-name: strategy-arkadiko-vault
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 32400
+            expected-sender: ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA
+            cost: 32990
             path: "contracts\\strategy-arkadiko-vault.clar"
             anchor-block-only: true
             clarity-version: 1
         - contract-publish:
             contract-name: strategy-bitflow-v1
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 33720
+            expected-sender: ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA
+            cost: 34310
             path: "contracts\\strategy-bitflow-v1.clar"
             anchor-block-only: true
             clarity-version: 1
         - contract-publish:
-            contract-name: strategy-granite-v1
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 101820
-            path: "contracts\\strategy-granite-v1.clar"
-            anchor-block-only: true
-            clarity-version: 1
-        - contract-publish:
             contract-name: strategy-hermetica-v1
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 67560
+            expected-sender: ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA
+            cost: 68220
             path: "contracts\\strategy-hermetica-v1.clar"
             anchor-block-only: true
             clarity-version: 1
         - contract-publish:
             contract-name: strategy-manager-v2
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 172880
+            expected-sender: ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA
+            cost: 173030
             path: "contracts\\strategy-manager-v2.clar"
             anchor-block-only: true
             clarity-version: 1
         - contract-publish:
-            contract-name: strategy-sbtc-v1
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 68570
-            path: "contracts\\strategy-sbtc-v1.clar"
-            anchor-block-only: true
-            clarity-version: 1
-        - contract-publish:
-            contract-name: strategy-stable-pool
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 22260
-            path: "contracts\\strategy-stable-pool.clar"
-            anchor-block-only: true
-            clarity-version: 1
-        - contract-publish:
-            contract-name: strategy-stackingdao-v1
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 84860
-            path: "contracts\\strategy-stackingdao-v1.clar"
-            anchor-block-only: true
-            clarity-version: 1
-        - contract-publish:
             contract-name: strategy-stackswap-v1
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 32410
+            expected-sender: ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA
+            cost: 33000
             path: "contracts\\strategy-stackswap-v1.clar"
             anchor-block-only: true
             clarity-version: 1
         - contract-publish:
             contract-name: strategy-stx-stacking
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 69290
+            expected-sender: ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA
+            cost: 69490
             path: "contracts\\strategy-stx-stacking.clar"
             anchor-block-only: true
             clarity-version: 1
         - contract-publish:
             contract-name: strategy-velar-farm
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 32400
+            expected-sender: ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA
+            cost: 32990
             path: "contracts\\strategy-velar-farm.clar"
             anchor-block-only: true
             clarity-version: 1
         - contract-publish:
             contract-name: strategy-zest-v1
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 32520
+            expected-sender: ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA
+            cost: 33110
             path: "contracts\\strategy-zest-v1.clar"
-            anchor-block-only: true
-            clarity-version: 1
-        - contract-publish:
-            contract-name: vault-stx-v2
-            expected-sender: STQKNVNB5XBSADFSVWAHYH4BXKAMYE9FS1GFEMS7
-            cost: 100120
-            path: "contracts\\vault-stx-v2.clar"
             anchor-block-only: true
             clarity-version: 1
       epoch: "2.05"
