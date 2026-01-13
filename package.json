@@ -14,9 +14,7 @@
     "test:integration": "vitest run tests/integration-user-journey.test.ts",
     "test:gas": "vitest run tests/gas-optimization.test.ts",
     "test:chaos": "vitest run tests/chaos-testing.test.ts",
-    "test:all": "npm run test:integration && npm run test:gas && npm run test:chaos",
-    "fix:bom": "node PRIVATE/fix-bom.js",
-    "pretest": "node PRIVATE/fix-bom.js"
+    "test:all": "npm run test:integration && npm run test:gas && npm run test:chaos"
   },
   "devDependencies": {
     "@hirosystems/clarinet-sdk": "^3.8.1",
