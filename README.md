@@ -386,22 +386,16 @@ contracts/
 **Matt Glory**
 
 - **GitHub**: [@mattglory](https://github.com/mattglory)
-- **Twitter**: [@mattglory14](https://twitter.com/mattglory14)  
+- **Twitter**: [@mattglory_](https://twitter.com/mattglory_)
 - **Discord**: geoglory
-- **Location**: London, UK
+- **Location**: Birmingham, UK
 
 ### Background
 
 - **Experience**: 2+ years software development
 - **Education**: LearnWeb3.io Stacks Developer Degree
 - **Previous Work**: Trading bot development (Hummingbot)
-- **Code4STX**: 4th submission (3 previous successful completions)
 - **Stacks Expertise**: 4+ months intensive blockchain development
-
-### Grant Recognition
-
-- **Bitflow Documentation Grant**: Awarded for ecosystem contribution
-- **Code4STX Track Record**: Proven delivery on previous grants
 
 ---
 
@@ -450,9 +444,8 @@ MIT License - See [LICENSE](./LICENSE)
 
 ## 🎯 Code4STX Submission
 
-**Submission Date**: January 2026  
-**Category**: DeFi Infrastructure  
-**Track**: #4 submission (3 previous completions)
+**Submission Date**: January 12, 2026
+**Category**: DeFi Infrastructure
 
 ### Why SNP Represents Innovation
 
@@ -480,9 +473,9 @@ MIT License - See [LICENSE](./LICENSE)
 
 - **Issues**: [GitHub Issues](https://github.com/mattglory/snp-mvp/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/mattglory/snp-mvp/discussions)
-- **Twitter**: [@mattglory14](https://twitter.com/mattglory14)
+- **Twitter**: [@mattglory_](https://twitter.com/mattglory_)
 - **Discord**: geoglory
 
 ---
 
-**Built with ₿ on Stacks** | **Production-Ready** | **Code4STX #4** | **January 12, 2026**
+**Built with ₿ on Stacks** | **Production-Ready** | **Code4STX Submission** | **January 12, 2026**

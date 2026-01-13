@@ -1,298 +1,248 @@
 # Security Policy
 
-## Reporting Vulnerabilities
+## Current Security Status
 
-**CRITICAL: DO NOT open public issues for security vulnerabilities.**
+SNP Protocol is currently in **testnet** phase. While the code has been thoroughly tested (111 tests passing, 84% coverage), it has NOT yet undergone a professional security audit.
 
-### Preferred Contact Methods
-
-1. **Email**: mattglory@proton.me (encrypted communication available)
-2. **Discord**: @geoglory (private DM)
-3. **GitHub Security Advisory**: Use "Report a vulnerability" button
-
-### What to Include
-
-- Description of the vulnerability
-- Steps to reproduce
-- Potential impact assessment
-- Suggested fix (if any)
-
-### Response Timeline
-
-- **Acknowledgment**: Within 48 hours
-- **Status Update**: Within 7 days
-- **Fix Timeline**: Communicated based on severity
-- **Credit**: Security researchers credited in SECURITY.md (optional)
+**Do not use this on mainnet with real funds until a security audit has been completed.**
 
 ---
 
-## Security Status
+## Reporting Security Issues
 
-### Current Status
+If you find a security vulnerability, please report it responsibly.
 
-⚠️ **Pre-Audit Phase**
+### DO:
+- Email details to: mattglory14@gmail.com
+- Include steps to reproduce
+- Give me reasonable time to fix before public disclosure
+- Suggest a fix if you have one
 
-Contracts are production-ready with comprehensive security features, but await formal third-party audit before mainnet deployment with significant funds.
+### DON'T:
+- Open a public GitHub issue
+- Tweet about it
+- Try to exploit it for profit
 
-### Audit Status
-
-- **Formal Audit**: Not yet conducted
-- **Bug Bounty**: Not yet active
-- **Last Review**: November 2024
-- **Next Milestone**: Security audit Q1 2025
+I'll respond within 24-48 hours and work with you on a fix.
 
 ---
 
-## Security Features Implemented
+## Known Security Considerations
 
-### Smart Contract Security
+### What's Implemented
 
-✅ **First Depositor Attack Protection**
-- Minimum 1000 STX first deposit
-- Dead shares (1000) minted to burn address
-- Prevents share price manipulation attacks
+**First Depositor Protection**
+- Minimum 1000 STX required for first deposit
+- Dead shares minted to burn address
+- Prevents inflation attacks on share price
+- Standard pattern used by leading DeFi protocols
 
-✅ **Slippage Protection**
-- User-defined minimum output on withdrawals
-- Prevents sandwich attacks
-- Protects against unfavorable price movements
+**Slippage Controls**
+- Users set minimum acceptable outputs
+- Deadline parameters prevent stale transactions
+- Protection against sandwich attacks and front-running
 
-✅ **Emergency Controls**
-- Circuit breaker (pause/unpause)
+**Emergency Mechanisms**
+- Owner can pause all deposits/withdrawals
+- Strategy whitelist prevents unauthorized integrations
 - Emergency withdrawal from strategies
-- Owner-controlled for rapid response
+- Multi-sig ready (not yet implemented)
 
-✅ **Access Controls**
-- Strategy whitelist system
-- Owner-only admin functions
-- Planned multi-sig transition
+**Access Control**
+- Owner-only functions for critical operations
+- Strategy manager controls allocation
+- Governance contract ready for DAO transition
 
-✅ **Deadline Protection**
-- Time-bound transactions
-- Prevents front-running
-- MEV protection
+### What's NOT Implemented Yet
 
-✅ **Share-Based Accounting**
-- ERC-4626 pattern
-- Pro-rata distribution
-- Anti-manipulation dead shares
+**Multi-Signature Admin**
+Currently using a single deployer address. Before mainnet:
+- Set up 3-of-5 or 4-of-7 multi-sig
+- Timelock (24-48h) on critical changes
+- Multiple trusted parties as signers
 
-### Code Security
+**Rate Limiting**
+No limits on deposit/withdrawal frequency. Could add:
+- Cooldown periods between operations
+- Maximum transaction sizes
+- Daily withdrawal limits
 
-✅ **Integer Overflow Protection**
-- Clarity's built-in safety
-- Explicit bounds checking
-- Validated inputs
-
-✅ **Reentrancy Protection**
-- State updates before external calls
-- Clear call patterns
-- Minimal external dependencies
-
-✅ **Error Handling**
-- Comprehensive error codes
-- Graceful failure modes
-- Clear error messages
+**Circuit Breakers**
+Basic pause mechanism exists but could be enhanced:
+- Automatic pause on abnormal conditions
+- Health monitoring for all strategies
+- Automatic emergency withdrawals
 
 ---
 
-## Known Limitations
+## Threat Model
 
-### Current Risks
+### Potential Attack Vectors
 
-1. **Admin Keys**
-   - **Risk**: Centralized control via owner keys
-   - **Mitigation**: Planned multi-sig + governance transition
-   - **Timeline**: Q3 2025
+**Smart Contract Bugs**
+- Risk: Code vulnerabilities could drain funds
+- Mitigation: Comprehensive testing, security audit before mainnet
+- Status: Pre-audit, use at own risk
 
-2. **Strategy Risk**
-   - **Risk**: Individual protocol vulnerabilities
-   - **Mitigation**: Strategy whitelist, diversification
-   - **Status**: Ongoing monitoring
+**Economic Attacks**
+- Risk: Flash loan attacks, price manipulation
+- Mitigation: First depositor protection, slippage controls, deadlines
+- Status: Basic protections implemented
 
-3. **No Audit**
-   - **Risk**: Undiscovered vulnerabilities
-   - **Mitigation**: Planned formal audit
-   - **Timeline**: Q1 2025
+**Admin Key Compromise**
+- Risk: If deployer key is compromised, attacker controls contracts
+- Mitigation: Multi-sig before mainnet, timelock on changes
+- Status: Single key (testnet only - will upgrade)
 
-4. **No Insurance**
-   - **Risk**: No coverage for exploits
-   - **Mitigation**: Exploring insurance options
-   - **Status**: Under consideration
+**Strategy Protocol Risks**
+- Risk: Integrated protocol gets hacked, SNP funds affected
+- Mitigation: Strategy diversification, health monitoring, emergency withdrawal
+- Status: Framework in place, needs real monitoring
 
-### Attack Vectors & Mitigations
-
-**Flash Loan Attacks**
-- **Mitigation**: First depositor protection, dead shares
-- **Status**: Protected
-
-**Price Manipulation**
-- **Mitigation**: TWAPs where applicable, slippage controls
-- **Status**: Protected
-
-**Griefing Attacks**
-- **Mitigation**: Minimum deposits, gas-efficient operations
-- **Status**: Protected
-
-**Sandwich Attacks**
-- **Mitigation**: Slippage protection, deadline parameters
-- **Status**: Protected
-
-**Reentrancy**
-- **Mitigation**: State updates before external calls
-- **Status**: Protected (Clarity inherent safety)
+**Front-Running**
+- Risk: Bots see pending transactions and front-run for profit
+- Mitigation: Slippage protection, deadline parameters
+- Status: User-controlled protections implemented
 
 ---
 
-## Security Best Practices
+## Security Roadmap
 
-### For Users
+### Before Mainnet (Required)
 
-**Before Depositing:**
-- Start with small amounts
-- Understand vault risk profiles
-- Read documentation thoroughly
-- Check contract addresses
+**Week 1-4: Audit Preparation**
+- [ ] Complete internal security review
+- [ ] Document all security assumptions
+- [ ] Create comprehensive attack scenario tests
+- [ ] Get quotes from 3+ audit firms
 
-**When Using:**
-- Set appropriate slippage tolerance
-- Use deadlines on transactions
-- Monitor positions regularly
-- Understand fee structure
+**Week 5-10: Professional Audit**
+- [ ] Select audit firm (CertiK, Trail of Bits, or similar)
+- [ ] Complete full smart contract audit
+- [ ] Fix all critical and high severity issues
+- [ ] Reaudit any major changes
 
-**Never:**
-- Share private keys
-- Approve unlimited amounts
-- Trust unverified contracts
-- Ignore warnings
+**Week 11-12: Launch Preparation**
+- [ ] Set up multi-sig wallet (3-of-5 minimum)
+- [ ] Implement timelock on critical functions
+- [ ] Deploy monitoring dashboard
+- [ ] Create incident response plan
+- [ ] Launch bug bounty program
 
-### For Developers
+### After Mainnet
 
-**Code Review:**
-- Follow Clarity best practices
-- Review external calls carefully
-- Validate all inputs
-- Test edge cases
+**Month 1-3: Monitoring**
+- Real-time transaction monitoring
+- Health checks on all strategies
+- Daily security reviews
+- Weekly status reports
 
-**Testing:**
-- Maintain 90%+ coverage
-- Test attack vectors
-- Stress test with chaos suite
-- Benchmark gas costs
-
-**Deployment:**
-- Use testnet first
-- Gradual rollout
-- Monitor closely
-- Have rollback plan
+**Month 4-6: Hardening**
+- Implement rate limiting if needed
+- Add circuit breakers based on learnings
+- Expand multi-sig to 4-of-7 or higher
+- Increase timelock delays
 
 ---
 
-## Incident Response
+## Bug Bounty Program
 
-### If Exploit Detected
+**Status**: Not yet launched (will launch before mainnet)
 
-1. **Immediate Actions:**
-   - Pause affected vaults
-   - Emergency withdraw from strategies
-   - Notify users via all channels
-   - Contact security team
+**Planned Scope**:
+- All SNP smart contracts
+- Frontend wallet integration
+- Infrastructure and APIs
 
-2. **Assessment:**
-   - Determine scope of impact
-   - Identify root cause
-   - Calculate losses
-   - Document timeline
+**Planned Rewards**:
+- Critical: Up to $50,000
+- High: Up to $10,000
+- Medium: Up to $2,500
+- Low: Up to $500
 
-3. **Communication:**
-   - Public disclosure (24-48h)
-   - User notifications
-   - Mitigation plan
-   - Compensation details (if applicable)
-
-4. **Resolution:**
-   - Deploy fix
-   - Comprehensive testing
-   - Third-party review
-   - Gradual resumption
-
-### Communication Channels
-
-- **Twitter**: [@mattglory14](https://twitter.com/mattglory14)
-- **Discord**: geoglory
-- **GitHub**: Status updates in issues
-- **Email**: Direct user notifications
+Will be hosted on Immunefi or similar platform.
 
 ---
 
-## Planned Security Enhancements
+## Security Best Practices for Users
 
-### Q1 2025
+### When SNP Launches on Mainnet
 
-- [ ] Formal security audit (Trail of Bits / Least Authority)
-- [ ] Multi-sig implementation for admin keys
-- [ ] Emergency response documentation
-- [ ] Incident response drills
+**Start Small**
+- Don't deposit your life savings on day one
+- Test with amounts you're comfortable losing
+- Wait for others to test first if you're risk-averse
 
-### Q2 2025
+**Understand the Risks**
+- Smart contract risk (code bugs)
+- Strategy risk (integrated protocols)
+- Market risk (price volatility)
+- Admin key risk (until fully decentralized)
 
-- [ ] Bug bounty program launch (Immunefi)
-- [ ] Insurance coverage exploration
-- [ ] Governance transition planning
-- [ ] Monitoring dashboard
+**Monitor Your Positions**
+- Check your vault balance regularly
+- Watch for any unusual activity
+- Join the Discord for announcements
+- Enable notifications if available
 
-### Q3 2025
-
-- [ ] DAO governance implementation
-- [ ] Timelock for critical changes
-- [ ] Community security review process
-- [ ] Decentralized emergency response
-
----
-
-## Security Checklist for Mainnet
-
-Before launching with real funds:
-
-```markdown
-- [ ] Formal security audit completed
-- [ ] All critical findings resolved
-- [ ] Multi-sig for admin functions
-- [ ] Bug bounty program active
-- [ ] Emergency contacts established
-- [ ] Monitoring systems deployed
-- [ ] Insurance explored
-- [ ] Legal review completed
-- [ ] User documentation complete
-- [ ] Incident response plan tested
-- [ ] Gradual TVL ramp strategy
-- [ ] $50K-$100K initial cap
-```
+**Use Hardware Wallets**
+- Ledger or similar for significant amounts
+- Don't use browser extension wallets for large sums
+- Double-check transaction details before signing
 
 ---
 
-## Security Hall of Fame
+## Incident Response Plan
 
-Security researchers who responsibly disclose vulnerabilities will be listed here with their permission.
+### If a Security Issue is Discovered
 
-*No vulnerabilities reported yet.*
+**Hour 1: Assessment**
+- Confirm the issue is real
+- Assess severity and impact
+- Notify core team
+
+**Hour 2-4: Containment**
+- Pause affected contracts if necessary
+- Emergency withdraw from affected strategies
+- Communicate with users via Twitter/Discord
+
+**Hour 4-24: Resolution**
+- Deploy fix if possible
+- Work with security researchers
+- Coordinate with integrated protocols if needed
+
+**Day 2+: Recovery**
+- Gradually resume operations
+- Post-mortem analysis
+- Implement additional safeguards
+- Compensate affected users if appropriate
 
 ---
 
-## Resources
+## Audit Status
 
-### Documentation
-- [Smart Contract Overview](./contracts/README.md)
-- [Testing Guide](./tests/TEST-GUIDE.md)
-- [API Reference](./docs/API.md)
+**Current**: Not audited
+**Planned**: Q1 2026
+**Firms Considering**: CertiK, Trail of Bits, ConsenSys Diligence, Halborn
 
-### External Resources
-- [Clarity Security Guide](https://docs.stacks.co/clarity/security)
-- [DeFi Security Best Practices](https://github.com/crytic/building-secure-contracts)
-- [Stacks Security Advisories](https://github.com/stacksgov/sips)
+Will update this document with audit results when completed.
 
 ---
 
-**Last Updated**: December 2024  
-**Version**: 1.0  
-**Contact**: mattglory@proton.me
+## Contact
+
+**Security Issues**: mattglory14@gmail.com
+**General Questions**: Discord (geoglory) or Twitter (@mattglory_)
+**Response Time**: <48 hours for critical issues
+
+---
+
+## Acknowledgments
+
+Thanks to anyone who responsibly discloses security issues. You're making SNP safer for everyone.
+
+---
+
+*This security policy will be updated as the project matures and new threats are identified.*
+
+**Last Updated**: January 12, 2026

@@ -1,8 +1,12 @@
 # Clarinet
 .cache/
+.claude/
 settings/Testnet.toml
 settings/Mainnet.toml
 # Clarinet.toml contains wallet mnemonic - already tracked, use .env instead
+Clarinet.toml.backup
+Clarinet.toml.fixed
+*.backup
 
 # Environment variables
 .env
@@ -47,6 +51,19 @@ deployments/*.applied
 /PRIVATE/
 *-PRIVATE.md
 *-private.md
+
+# Private application materials
+BTC-FI-Application/
+*-Application/
+
+# Outdated/private project files
+ACTION-PLAN-SUMMARY.md
+YOUR-DEPLOYMENT.md
+SENIOR-DEV-REVIEW.md
+IMPLEMENTATION-COMPLETE.md
+TESTNET-DEPLOYMENT-GUIDE.md
+SECURITY-FIXES-COMPLETE.md
+NEXT-STEPS.md
 
 # Personal information
 PERSONAL-*.md

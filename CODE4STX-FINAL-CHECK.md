@@ -2,7 +2,7 @@
 
 **Submission Date**: January 12, 2026
 **Project**: SNP (Stacks Nexus Protocol)
-**Track**: Fourth Code4STX Entry
+**Track**: Code4STX Submission
 
 ---
 
@@ -309,11 +309,11 @@ npm start
 - Professional standards (raises bar)
 - Community focused
 
-### 4. Execution Track Record
-- 4th Code4STX submission
-- 3 previous completions
-- LearnWeb3 graduate
-- Bitflow documentation grant recipient
+### 4. Development Quality
+- Production-grade codebase
+- Comprehensive testing approach
+- LearnWeb3 Stacks Developer Degree
+- Security-first mindset
 
 ### 5. Long-term Commitment
 - 6+ months of development
@@ -389,10 +389,10 @@ npm start
 
 **Developer**: Matt Glory
 **Email**: mattglory14@gmail.com
-**Twitter**: @mattglory14
+**Twitter**: @mattglory_
 **Discord**: geoglory
 **GitHub**: @mattglory
-**Location**: London, UK
+**Location**: Birmingham, UK
 
 **Response Time**: <24 hours for all inquiries
 
