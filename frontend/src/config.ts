@@ -16,26 +16,26 @@ export const CONFIG = {
   contracts: {
     // Three Vault Options
     vaults: {
-      balanced: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.vault-stx-v2',
-      conservative: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.vault-conservative',
-      growth: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.vault-growth',
+      balanced: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.vault-stx-v2',
+      conservative: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.vault-conservative',
+      growth: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.vault-growth',
     },
-    strategyManager: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-manager-v2',
+    strategyManager: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-manager-v2',
     
     // Strategy Contracts
     strategies: {
-      sbtc: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-sbtc-v1',
-      stackingDao: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-stackingdao-v1',
-      granite: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-granite-v1',
-      stablePool: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-stable-pool',
-      alex: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-alex-stx-usda',
-      arkadiko: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-arkadiko-vault',
-      bitflow: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-bitflow-v1',
-      hermetica: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-hermetica-v1',
-      stackswap: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-stackswap-v1',
-      velar: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-velar-farm',
-      zest: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-zest-v1',
-      stxStacking: 'ST2X1GBHA2WJXREWP231EEQXZ1GDYZEEXYRAD1PA8.strategy-stx-stacking',
+      sbtc: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-sbtc-v1',
+      stackingDao: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-stackingdao-v1',
+      granite: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-granite-v1',
+      stablePool: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-stable-pool',
+      alex: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-alex-stx-usda',
+      arkadiko: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-arkadiko-vault',
+      bitflow: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-bitflow-v1',
+      hermetica: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-hermetica-v1',
+      stackswap: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-stackswap-v1',
+      velar: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-velar-farm',
+      zest: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-zest-v1',
+      stxStacking: 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA.strategy-stx-stacking',
     },
   },
 

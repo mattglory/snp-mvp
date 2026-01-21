@@ -12,14 +12,11 @@ import { openContractCall } from '@stacks/connect';
 
 const network = new StacksTestnet();
 
-// Your deployed testnet contract address
 const CONTRACT_ADDRESS = 'ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA';
 
 export interface DepositParams {
-  vaultContract: string;  // e.g., 'vault-conservative'
-  amount: number;         // in microSTX
-  minShares: number;      // minimum shares to receive
-  deadline: number;       // block height deadline
+  vaultContract: string;
+  amount: number;
 }
 
 export interface WithdrawParams {
@@ -34,7 +31,6 @@ export function useVaultContract(userSession: UserSession) {
   const [error, setError] = useState<string | null>(null);
   const [txId, setTxId] = useState<string | null>(null);
 
-  // Deposit STX to vault
   const deposit = useCallback(async (params: DepositParams) => {
     if (!userSession.isUserSignedIn()) {
       setError('Please connect your wallet first');
@@ -51,9 +47,7 @@ export function useVaultContract(userSession: UserSession) {
         contractName: params.vaultContract,
         functionName: 'deposit',
         functionArgs: [
-          uintCV(params.amount),
-          uintCV(params.minShares),
-          uintCV(params.deadline),
+          uintCV(params.amount),  // Only one argument!
         ],
         network,
         anchorMode: AnchorMode.Any,
@@ -83,7 +77,6 @@ export function useVaultContract(userSession: UserSession) {
     }
   }, [userSession]);
 
-  // Withdraw STX from vault
   const withdraw = useCallback(async (params: WithdrawParams) => {
     if (!userSession.isUserSignedIn()) {
       setError('Please connect your wallet first');

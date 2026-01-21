@@ -61,17 +61,10 @@ export function DepositWithdraw({
     }
 
     const amountMicroSTX = Math.floor(parseFloat(amount) * 1_000_000);
-    const slippagePercent = parseFloat(slippage) / 100;
-    const minShares = Math.floor(amountMicroSTX * (1 - slippagePercent));
-
-    // Set deadline to 100 blocks from now (roughly 16 hours on testnet)
-    const deadline = 999999999; // Far future for testing
 
     await deposit({
       vaultContract,
       amount: amountMicroSTX,
-      minShares,
-      deadline,
     });
   };
 
