@@ -1,318 +1,281 @@
-import { useState } from 'react';
-import { formatSTX, formatAPY } from './utils/formatting';
-import AllocationVisualization from './components/AllocationVisualization';
-import VaultSelector from './components/VaultSelector';
-import VaultDashboard from './components/VaultDashboard';
-import { DepositWithdraw } from './components/DepositWithdraw';
-import { UserBalance } from './components/UserBalance';
+import { useState, useRef, useCallback } from 'react';
+import { TrendingUp, Shield, Layers } from 'lucide-react';
+import { formatAPY } from './utils/formatting';
+import { VaultCards } from './components/vaults/VaultCards';
+import { VaultManagementPanel } from './components/VaultManagementPanel';
+import { PortfolioSummary } from './components/PortfolioSummary';
 import { useWallet } from './hooks/useWallet';
-import CONFIG from './config';
 
 function App() {
-  // Real Wallet Integration
+  // Wallet Integration
   const { isConnected, address, loading, connectWallet, disconnectWallet, userSession } = useWallet();
 
   // Vault Selection
   const [selectedVault, setSelectedVault] = useState('balanced');
-
-  // Real testnet data
-  const [totalTVL] = useState(1800000000); // 1800 STX
   const [averageAPY] = useState(14.9);
+
+  // Ref for scroll-to-management
+  const managementRef = useRef<HTMLDivElement>(null);
+
+  // Handle vault selection with scroll
+  const handleVaultSelect = useCallback((vaultId: string) => {
+    setSelectedVault(vaultId);
+
+    // Scroll to management panel after a brief delay
+    setTimeout(() => {
+      managementRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 100);
+  }, []);
 
   // Format address for display
   const displayAddress = address
     ? `${address.slice(0, 6)}...${address.slice(-4)}`
     : '';
 
-  // Get vault contract name
-  const vaultContractMap: Record<string, string> = {
-    'conservative': 'vault-conservative',
-    'balanced': 'vault-stx-v2',
-    'growth': 'vault-growth',
-  };
-
   return (
-    <div className="min-h-screen bg-dark-bg">
+    <div className="min-h-screen bg-[#0a0a0f]">
       {/* Header */}
-      <header className="border-b border-dark-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-4xl font-bold gradient-text mb-1">
-                SNP
-              </h1>
-              <p className="text-gray-400">
-                Bitcoin's Intelligent Yield Aggregator
-              </p>
+      <header className="sticky top-0 z-50 bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-gray-800">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="absolute inset-0 bg-orange-500 blur-lg opacity-50"></div>
+                <div className="relative w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">S</span>
+                </div>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-white">SNP</h1>
+                <p className="text-xs text-gray-400">Stacks Yield Aggregator</p>
+              </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              {isConnected && (
-                <div className="text-sm text-gray-400">
-                  {displayAddress}
+            {/* Right Section */}
+            <div className="flex items-center space-x-4">
+              {/* Network Indicator */}
+              <div className="hidden md:flex items-center space-x-2 px-3 py-2 bg-gray-800/50 rounded-lg border border-gray-700">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-xs text-gray-300">Testnet</span>
+              </div>
+
+              {/* Wallet Button */}
+              {!isConnected ? (
+                <button
+                  onClick={connectWallet}
+                  disabled={loading}
+                  className="flex items-center space-x-2 px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-all duration-200 font-medium disabled:opacity-50"
+                >
+                  <span>{loading ? 'Connecting...' : 'Connect Wallet'}</span>
+                </button>
+              ) : (
+                <div className="flex items-center space-x-3">
+                  <div className="hidden md:block px-4 py-2 bg-gray-800/50 rounded-lg border border-gray-700">
+                    <div className="text-xs text-gray-400 mb-0.5">Connected</div>
+                    <div className="text-sm text-white font-mono">{displayAddress}</div>
+                  </div>
+                  <button
+                    onClick={disconnectWallet}
+                    className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors text-sm"
+                  >
+                    Disconnect
+                  </button>
                 </div>
               )}
-              <button
-                onClick={isConnected ? disconnectWallet : connectWallet}
-                className="btn-primary"
-                disabled={loading}
-              >
-                {loading ? 'Connecting...' : isConnected ? 'Disconnect' : 'Connect Wallet'}
-              </button>
             </div>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
-        {/* Test Results Banner */}
-        <div className="bg-gradient-to-r from-success/20 to-bitcoin-orange/20 border border-success/50 rounded-xl p-6 mb-12 shadow-lg">
-          <div className="flex items-start gap-4">
-            <div className="text-4xl">✓</div>
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold text-success mb-2">
-                Production Ready - Live on Testnet
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                <div className="bg-dark-card/50 rounded-lg p-3">
-                  <div className="text-gray-400 text-xs mb-1">Contracts</div>
-                  <div className="text-2xl font-bold text-bitcoin-orange">17</div>
-                </div>
-                <div className="bg-dark-card/50 rounded-lg p-3">
-                  <div className="text-gray-400 text-xs mb-1">Vaults</div>
-                  <div className="text-2xl font-bold text-purple-400">3</div>
-                </div>
-                <div className="bg-dark-card/50 rounded-lg p-3">
-                  <div className="text-gray-400 text-xs mb-1">Tests Passing</div>
-                  <div className="text-2xl font-bold text-success">111</div>
-                </div>
-                <div className="bg-dark-card/50 rounded-lg p-3">
-                  <div className="text-gray-400 text-xs mb-1">Network</div>
-                  <div className="text-xl font-bold">Testnet</div>
-                </div>
+      <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {isConnected ? (
+          <div className="space-y-12">
+            {/* Hero Section */}
+            <div className="text-center space-y-4 py-8">
+              <div className="inline-flex items-center space-x-2 px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-full text-green-400 text-sm font-medium mb-4">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span>Live on Stacks Testnet</span>
               </div>
-              <p className="text-gray-400 mt-3 text-sm">
-                ✨ Try it now! Connect your wallet and test deposits on Stacks testnet
+              <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+                Automated{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                  Yield Optimization
+                </span>
+              </h1>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                Multi-strategy DeFi vault protocol on Stacks. Deposit once, earn optimized yields across 12+ strategies with automated rebalancing.
               </p>
             </div>
-          </div>
-        </div>
 
-        {/* Protocol Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          <div className="stat-card">
-            <div className="stat-label">Total Value Locked</div>
-            <div className="stat-value">{formatSTX(totalTVL, 0)} STX</div>
-            <div className="text-sm text-gray-400 mt-2">
-              💎 Across 3 vaults • 12 strategies
+            {/* Protocol Metrics */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {/* Protocol TVL */}
+              <div className="bg-gradient-to-br from-blue-950/30 via-gray-900 to-gray-900 border border-blue-500/20 rounded-2xl p-6 hover:scale-[1.02] transition-transform">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-3 bg-blue-500/10 rounded-xl">
+                    <TrendingUp className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <span className="text-xs font-medium text-blue-400 px-3 py-1 bg-blue-500/10 rounded-full">
+                    30d
+                  </span>
+                </div>
+                <div className="text-3xl font-bold text-white mb-1">$7.1M</div>
+                <div className="text-sm text-gray-400">Total Value Locked</div>
+                <div className="text-xs text-gray-500 mt-2">Across 3 vaults | 12 strategies</div>
+              </div>
+
+              {/* Average APY */}
+              <div className="bg-gradient-to-br from-orange-950/30 via-gray-900 to-gray-900 border border-orange-500/20 rounded-2xl p-6 hover:scale-[1.02] transition-transform">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-3 bg-orange-500/10 rounded-xl">
+                    <Shield className="w-6 h-6 text-orange-400" />
+                  </div>
+                  <span className="text-xs font-medium text-emerald-400 px-3 py-1 bg-emerald-500/10 rounded-full">
+                    Live
+                  </span>
+                </div>
+                <div className="text-3xl font-bold text-orange-400 mb-1">{formatAPY(averageAPY)}</div>
+                <div className="text-sm text-gray-400">Average Yield</div>
+                <div className="text-xs text-gray-500 mt-2">Weighted across all positions</div>
+              </div>
+
+              {/* Active Strategies */}
+              <div className="bg-gradient-to-br from-purple-950/30 via-gray-900 to-gray-900 border border-purple-500/20 rounded-2xl p-6 hover:scale-[1.02] transition-transform">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-3 bg-purple-500/10 rounded-xl">
+                    <Layers className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <span className="text-xs font-medium text-purple-400 px-3 py-1 bg-purple-500/10 rounded-full">
+                    Auto
+                  </span>
+                </div>
+                <div className="text-3xl font-bold text-white mb-1">12</div>
+                <div className="text-sm text-gray-400">Active Strategies</div>
+                <div className="text-xs text-gray-500 mt-2">Automated rebalancing</div>
+              </div>
+            </div>
+
+            {/* Vault Selection */}
+            <VaultCards
+              selectedVault={selectedVault}
+              onVaultSelect={handleVaultSelect}
+              userAddress={address || undefined}
+            />
+
+            {/* Portfolio & Management Section */}
+            <div ref={managementRef} className="scroll-mt-24">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Portfolio Summary */}
+                <div className="lg:col-span-1">
+                  <PortfolioSummary
+                    userAddress={address || ''}
+                    userSession={userSession}
+                  />
+                </div>
+
+                {/* Vault Management */}
+                <div className="lg:col-span-2">
+                  <VaultManagementPanel
+                    selectedVault={selectedVault}
+                    userAddress={address || ''}
+                    userSession={userSession}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Protocol Information */}
+            <div className="bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 border border-gray-800 rounded-2xl p-8 mt-12">
+              <div className="max-w-3xl mx-auto text-center space-y-4">
+                <h3 className="text-2xl font-bold text-white">How It Works</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  SNP automatically allocates deposited assets across multiple DeFi strategies on Stacks.
+                  Smart contracts monitor performance and rebalance positions to optimize returns while managing risk exposure.
+                  All vaults are non-custodial—you retain complete control of your assets at all times.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-orange-400 mb-2">8%</div>
+                    <div className="text-sm text-gray-400">Performance Fee</div>
+                    <div className="text-xs text-gray-500 mt-1">Charged on profits only</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-emerald-400 mb-2">24h</div>
+                    <div className="text-sm text-gray-400">Rebalance Cycle</div>
+                    <div className="text-xs text-gray-500 mt-1">Automated execution</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-blue-400 mb-2">0%</div>
+                    <div className="text-sm text-gray-400">Deposit/Withdrawal Fee</div>
+                    <div className="text-xs text-gray-500 mt-1">Enter and exit anytime</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div className="stat-card">
-            <div className="stat-label">Protocol Average APY</div>
-            <div className="apy-display">{formatAPY(averageAPY)}</div>
-            <div className="text-sm text-success mt-2">
-              ↗ 8-25% range depending on vault
+        ) : (
+          <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6">
+            <div className="text-center space-y-4">
+              <h2 className="text-4xl font-bold text-white">
+                Welcome to SNP
+              </h2>
+              <p className="text-xl text-gray-400 max-w-2xl">
+                Automated yield optimization protocol for Stacks DeFi. Connect your wallet to view available vaults and start earning.
+              </p>
             </div>
-          </div>
-        </div>
-
-        {/* Vault Selector */}
-        <VaultSelector
-          selectedVault={selectedVault}
-          onVaultChange={setSelectedVault}
-        />
-
-        {/* Deposit/Withdraw & Balance - NEW! */}
-        {isConnected && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
-            <div className="lg:col-span-2">
-              <DepositWithdraw
-                vaultContract={vaultContractMap[selectedVault]}
-                vaultName={CONFIG.vaultMetadata[selectedVault as keyof typeof CONFIG.vaultMetadata].name}
-                userSession={userSession}
-                isConnected={isConnected}
-              />
-            </div>
-            <div>
-              <UserBalance address={address} isConnected={isConnected} />
+            <button
+              onClick={connectWallet}
+              disabled={loading}
+              className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white text-lg rounded-lg transition-all duration-200 font-medium disabled:opacity-50"
+            >
+              {loading ? 'Connecting...' : 'Connect Wallet'}
+            </button>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 w-full max-w-4xl">
+              <div className="text-center p-6 bg-gray-900 border border-gray-800 rounded-xl">
+                <div className="text-3xl font-bold text-orange-400 mb-2">8%</div>
+                <div className="text-sm text-gray-400">Performance Fee</div>
+                <div className="text-xs text-gray-500 mt-2">Industry competitive</div>
+              </div>
+              <div className="text-center p-6 bg-gray-900 border border-gray-800 rounded-xl">
+                <div className="text-3xl font-bold text-emerald-400 mb-2">24h</div>
+                <div className="text-sm text-gray-400">Rebalancing</div>
+                <div className="text-xs text-gray-500 mt-2">Fully automated</div>
+              </div>
+              <div className="text-center p-6 bg-gray-900 border border-gray-800 rounded-xl">
+                <div className="text-3xl font-bold text-blue-400 mb-2">100%</div>
+                <div className="text-sm text-gray-400">Non-Custodial</div>
+                <div className="text-xs text-gray-500 mt-2">Your keys, your crypto</div>
+              </div>
             </div>
           </div>
         )}
-
-        {/* Vault Dashboard */}
-        <VaultDashboard
-          selectedVault={selectedVault}
-          isWalletConnected={isConnected}
-        />
-
-        {/* Allocation Visualization */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">Strategy Allocation</h2>
-          <p className="text-sm text-gray-400 mb-6">
-            Live allocation for {CONFIG.vaultMetadata[selectedVault as keyof typeof CONFIG.vaultMetadata].name}
-          </p>
-          <AllocationVisualization showTestResults={false} />
-        </div>
-
-        {/* Strategy Grid */}
-        <div>
-          <div className="flex justify-between items-center mb-6">
-            <div>
-              <h2 className="text-2xl font-bold">Available Strategies</h2>
-              <p className="text-sm text-gray-400 mt-1">
-                12 strategies • Diversified across DeFi protocols • Automated rebalancing
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Object.entries(CONFIG.strategyMetadata).map(([key, strategy]) => (
-              <StrategyCard key={key} strategy={strategy} isConnected={isConnected} />
-            ))}
-          </div>
-        </div>
-
-        {/* Info Section */}
-        <div className="mt-12 card">
-          <div className="flex items-start gap-4">
-            <div className="text-4xl">₿</div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">
-                Secured by Bitcoin
-              </h3>
-              <p className="text-gray-400 mb-4">
-                SNP is built on Stacks, the leading Bitcoin L2. Your funds benefit from
-                Bitcoin's security while earning optimized yields across 12 DeFi protocols.
-              </p>
-              <div className="flex flex-wrap gap-3 text-sm">
-                <div className="badge badge-success">
-                  100% Bitcoin Finality
-                </div>
-                <div className="badge badge-bitcoin">
-                  5-Second Blocks
-                </div>
-                <div className="badge badge-success">
-                  Non-Custodial
-                </div>
-                <div className="badge badge-warning">
-                  SIP-010 Compliant
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Features Grid */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="card">
-            <div className="text-3xl mb-3">🔒</div>
-            <h4 className="font-bold mb-2">Security First</h4>
-            <p className="text-sm text-gray-400">
-              First depositor protection, emergency controls, slippage protection, and 8% performance fee.
-            </p>
-          </div>
-
-          <div className="card">
-            <div className="text-3xl mb-3">⚡</div>
-            <h4 className="font-bold mb-2">Automated Everything</h4>
-            <p className="text-sm text-gray-400">
-              Zero manual management. Deposit once, earn continuously across 12 protocols automatically.
-            </p>
-          </div>
-
-          <div className="card">
-            <div className="text-3xl mb-3">📊</div>
-            <h4 className="font-bold mb-2">Full Transparency</h4>
-            <p className="text-sm text-gray-400">
-              See exactly where your funds are allocated. Open source contracts, verifiable on-chain.
-            </p>
-          </div>
-        </div>
-
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-dark-border mt-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center text-gray-400 text-sm">
-            <p className="font-semibold text-gray-300 mb-2">
-              SNP - First Automated Yield Aggregator on Stacks Bitcoin L2
-            </p>
-            <p className="mb-2">
-              Built with ₿ by Matt Glory • Production-Ready • Code4STX Submission
-            </p>
-            <div className="flex justify-center gap-4 text-xs mt-4">
-              <a href="https://github.com/mattglory/snp-mvp" className="hover:text-bitcoin-orange transition-colors">
-                GitHub
-              </a>
-              <span>•</span>
-              <a href="https://twitter.com/mattglory_" className="hover:text-bitcoin-orange transition-colors">
-                Twitter @mattglory_
-              </a>
-              <span>•</span>
-              <a href="https://discord.com" className="hover:text-bitcoin-orange transition-colors">
-                Discord: geoglory
-              </a>
+      <footer className="border-t border-gray-800 mt-20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-gray-400">Testnet Deployment</span>
+            </div>
+            <div className="flex space-x-6 text-sm text-gray-400">
+              <a href="#" className="hover:text-white transition-colors">Documentation</a>
+              <a href="#" className="hover:text-white transition-colors">Analytics</a>
+              <a href="#" className="hover:text-white transition-colors">Community</a>
+              <a href="#" className="hover:text-white transition-colors">GitHub</a>
+            </div>
+            <div className="text-xs text-gray-500">
+              SNP Protocol 2025
             </div>
           </div>
         </div>
       </footer>
-    </div>
-  );
-}
-
-// Strategy Card Component
-function StrategyCard({ strategy, isConnected }: { strategy: any; isConnected: boolean }) {
-  const getRiskBadgeClass = (risk: string) => {
-    switch (risk) {
-      case 'low':
-        return 'badge-success';
-      case 'medium':
-        return 'badge-warning';
-      case 'high':
-        return 'badge-error';
-      default:
-        return '';
-    }
-  };
-
-  return (
-    <div className="card hover:shadow-card-hover transition-all duration-300 group">
-      <div className="flex justify-between items-start mb-4">
-        <div>
-          <h3 className="text-lg font-bold mb-1 group-hover:text-bitcoin-orange transition-colors">
-            {strategy.name}
-          </h3>
-          <div className="text-xs text-gray-500">{strategy.category}</div>
-        </div>
-        <span className={`badge ${getRiskBadgeClass(strategy.riskLevel)}`}>
-          {strategy.riskLevel.toUpperCase()}
-        </span>
-      </div>
-
-      <p className="text-gray-400 text-sm mb-4 min-h-[40px]">
-        {strategy.description}
-      </p>
-
-      <div className="flex justify-between items-end">
-        <div>
-          <div className="text-xs text-gray-500 mb-1">Target APY</div>
-          <div className="text-2xl font-bold text-bitcoin-orange">
-            {formatAPY(strategy.targetAPY)}
-          </div>
-        </div>
-
-        <button
-          className="btn-primary text-sm py-2 px-4 disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled={!isConnected}
-          onClick={() => console.log('Use vault deposit above', strategy.name)}
-        >
-          {isConnected ? 'Available' : 'Connect First'}
-        </button>
-      </div>
     </div>
   );
 }
