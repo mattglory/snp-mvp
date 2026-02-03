@@ -21,8 +21,8 @@
 (define-constant DEAD-SHARES u1000)
 (define-constant BURN-ADDRESS 'SP000000000000000000002Q6VF78)
 
-;; Same 8% fee but targeting higher yields
-(define-constant PERFORMANCE-FEE-BPS u800) ;; 8% = 800 basis points
+;; Zero fees - self-custodial Bitcoin ethos
+(define-constant PERFORMANCE-FEE-BPS u0) ;; No performance fees
 
 ;; Data vars
 (define-data-var contract-owner principal tx-sender)

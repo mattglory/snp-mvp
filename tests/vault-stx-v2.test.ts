@@ -66,10 +66,10 @@ describe('Vault STX V2 Tests', () => {
         deployer
       );
       
-      // Expect close to 460M (rounding errors acceptable)
+      // Expect close to 500M with zero fees (rounding errors acceptable)
       const resultValue = result.value.value;
-      expect(resultValue).toBeGreaterThan(459999000n);
-      expect(resultValue).toBeLessThan(460001000n);
+      expect(resultValue).toBeGreaterThan(499999000n);
+      expect(resultValue).toBeLessThan(500001000n);
     });
   });
 
@@ -218,8 +218,8 @@ describe('Vault STX V2 Tests', () => {
     });
   });
 
-  describe('Fee Collection', () => {
-    it('should charge withdrawal fee correctly', async () => {
+  describe('Zero Fee Withdrawals', () => {
+    it('should return full amount with zero fees', async () => {
       const { simnet, deployer } = await setupTest();
       
       simnet.callPublicFn(
@@ -240,10 +240,10 @@ describe('Vault STX V2 Tests', () => {
         deployer
       );
       
-      // Expect close to 920M (rounding acceptable)
+      // Expect close to 1000M with zero fees (rounding acceptable)
       const resultValue = result.value.value;
-      expect(resultValue).toBeGreaterThan(919999000n);
-      expect(resultValue).toBeLessThan(920001000n);
+      expect(resultValue).toBeGreaterThanOrEqual(999999000n);
+      expect(resultValue).toBeLessThanOrEqual(1000001000n);
     });
   });
 });

@@ -197,7 +197,7 @@ describe('Growth Vault Tests', () => {
         deployer
       );
       
-      expect(result).toBeOk(Cl.uint(459999540n)); // Should get ~460 STX (500 - 8% fee)
+      expect(result).toBeOk(Cl.uint(499999500n)); // Should get ~500 STX (zero fees)
     });
 
     it('should reject withdrawal if slippage exceeds limit', async () => {
@@ -210,18 +210,18 @@ describe('Growth Vault Tests', () => {
         deployer
       );
 
-      // Try to withdraw with tight slippage
+      // Try to withdraw with impossible slippage (asking for more than deposited)
       const { result } = simnet.callPublicFn(
         'vault-growth',
         'withdraw',
         [
           Cl.uint(500000000n), // 500 shares
-          Cl.uint(495000000n), // min 495 STX out - too high, will fail
+          Cl.uint(550000000n), // min 550 STX out - impossible, will fail
           Cl.uint(1000000n)
         ],
         deployer
       );
-      
+
       expect(result).toBeErr(Cl.uint(407n)); // ERR-SLIPPAGE-EXCEEDED
     });
 
@@ -276,8 +276,8 @@ describe('Growth Vault Tests', () => {
     });
   });
 
-  describe('Performance Fee (8%)', () => {
-    it('should charge 8% performance fee on withdrawals', async () => {
+  describe('Zero Fee Withdrawals', () => {
+    it('should return full amount with zero fees', async () => {
       const { simnet, deployer } = await setupTest();
       // Deposit 1000 STX
       simnet.callPublicFn(
@@ -299,8 +299,8 @@ describe('Growth Vault Tests', () => {
         deployer
       );
       
-      // Should receive 920 STX (1000 - 8% = 920)
-      expect(result).toBeOk(Cl.uint(919999080n));
+      // Should receive ~1000 STX (zero fees)
+      expect(result).toBeOk(Cl.uint(999999000n));
     });
 
     it('should preview withdrawal with fee calculation', async () => {
@@ -658,7 +658,7 @@ describe('Growth Vault Tests', () => {
         [Cl.uint(500000000n), Cl.uint(0n), Cl.uint(1000000n)],
         deployer
       );
-      expect(result1.result).toBeOk(Cl.uint(459999540n));
+      expect(result1.result).toBeOk(Cl.uint(499999500n)); // Zero fees
 
       // Re-deposit
       const result2 = simnet.callPublicFn(

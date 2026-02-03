@@ -1,7 +1,7 @@
 # SNP Protocol - Where We're At
 
-**Last Updated**: January 12, 2026
-**Current Phase**: Testnet deployed, preparing for Code4STX submission
+**Last Updated**: January 21, 2026
+**Current Phase**: Testnet deployed, withdrawal functionality fixed
 
 ---
 
@@ -10,6 +10,21 @@
 SNP is production-ready from a technical standpoint. All 17 contracts compile cleanly, 111 tests are passing, and everything's live on testnet. The contracts work, the architecture is solid, and the code is clean.
 
 What's left is mostly polish, community building, and getting a security audit before mainnet.
+
+---
+
+## Recent Updates
+
+### January 21, 2026 - Withdrawal Functionality Fixed ✅
+Resolved critical withdrawal slippage calculation issue:
+- **Issue**: Withdrawal transactions were failing with slippage errors despite correct share balances
+- **Root Cause**: Slippage calculation didn't account for 8% performance fee
+- **Fix**: Updated minimum asset calculation to factor in fee: `minAssets = shares * 0.92 * (1 - slippage)`
+- **Result**: All three vaults (Conservative, Balanced, Growth) now successfully process withdrawals
+- **Additional**: Added transparent fee display to UI showing expected amount after fees
+- **Verification**: Confirmed with multiple successful testnet transactions across all vault types
+
+All withdrawal functionality is now working correctly on testnet. Users can deposit and withdraw from all three vaults without issues.
 
 ---
 
@@ -32,11 +47,14 @@ What's left is mostly polish, community building, and getting a security audit b
   - testnet verification: 22/22 tests (100%)
   - gas optimization: 4/4 tests (100%)
 
-### Frontend (80%)
+### Frontend (90%)
 - Basic React interface built
 - Vault selector working
 - Portfolio dashboard functional
-- Still needs wallet integration (Leather, Hiro, Xverse)
+- ✅ Wallet integration complete (Leather, Hiro)
+- ✅ Deposit/Withdraw flows working on testnet
+- ✅ Real-time balance updates
+- ✅ Transaction success/error handling
 
 ---
 

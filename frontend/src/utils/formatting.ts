@@ -42,6 +42,33 @@ export function formatUSD(amount: number, decimals: number = 2): string {
   }).format(amount);
 }
 
+// Format currency value with symbol
+export function formatCurrency(amount: number, currency: string = 'USD', decimals: number = 2): string {
+  if (currency === 'STX') {
+    return `${amount.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })} STX`;
+  }
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currency,
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(amount);
+}
+
+// Format number with K/M/B suffixes (compact display)
+export function formatNumber(value: number, decimals: number = 2): string {
+  if (value >= 1_000_000_000) {
+    return `${(value / 1_000_000_000).toFixed(decimals)}B`;
+  }
+  if (value >= 1_000_000) {
+    return `${(value / 1_000_000).toFixed(decimals)}M`;
+  }
+  if (value >= 1_000) {
+    return `${(value / 1_000).toFixed(decimals)}K`;
+  }
+  return value.toFixed(decimals);
+}
+
 // Format percentage
 export function formatPercentage(value: number, decimals: number = 2): string {
   return `${value >= 0 ? '+' : ''}${value.toFixed(decimals)}%`;

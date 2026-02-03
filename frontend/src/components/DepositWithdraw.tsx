@@ -19,8 +19,9 @@ export function DepositWithdraw({
   const [amount, setAmount] = useState('');
   const [slippage, setSlippage] = useState('1'); // 1% default
   const [stxBalance, setStxBalance] = useState<number | null>(null);
+  const [shareBalance, setShareBalance] = useState<number | null>(null);
 
-  const { deposit, withdraw, loading, error, txId } = useVaultContract(userSession);
+  const { deposit, withdraw, getShareBalance, loading, error, txId } = useVaultContract(userSession);
 
   // Fetch user's STX balance
   useEffect(() => {
@@ -47,11 +48,30 @@ export function DepositWithdraw({
     fetchBalance();
   }, [isConnected, userSession]);
 
+  // Fetch user's share balance
+  useEffect(() => {
+    if (!isConnected || !userSession.isUserSignedIn()) {
+      setShareBalance(null);
+      return;
+    }
+
+    const fetchShares = async () => {
+      const shares = await getShareBalance(vaultContract);
+      setShareBalance(shares);
+    };
+
+    fetchShares();
+  }, [isConnected, userSession, vaultContract, getShareBalance, mode]);
+
   const handleMaxClick = () => {
-    if (stxBalance !== null) {
+    if (mode === 'deposit' && stxBalance !== null) {
       // Reserve 0.1 STX for gas fees
       const maxAmount = Math.max(0, (stxBalance - 100000) / 1_000_000);
       setAmount(maxAmount.toFixed(6));
+    } else if (mode === 'withdraw' && shareBalance !== null) {
+      // Withdraw all shares
+      const maxShares = shareBalance / 1_000_000;
+      setAmount(maxShares.toFixed(6));
     }
   };
 
@@ -61,17 +81,10 @@ export function DepositWithdraw({
     }
 
     const amountMicroSTX = Math.floor(parseFloat(amount) * 1_000_000);
-    const slippagePercent = parseFloat(slippage) / 100;
-    const minShares = Math.floor(amountMicroSTX * (1 - slippagePercent));
-
-    // Set deadline to 100 blocks from now (roughly 16 hours on testnet)
-    const deadline = 999999999; // Far future for testing
 
     await deposit({
       vaultContract,
       amount: amountMicroSTX,
-      minShares,
-      deadline,
     });
   };
 
@@ -82,7 +95,14 @@ export function DepositWithdraw({
 
     const sharesMicro = Math.floor(parseFloat(amount) * 1_000_000);
     const slippagePercent = parseFloat(slippage) / 100;
-    const minAssets = Math.floor(sharesMicro * (1 - slippagePercent));
+    
+    // Account for 8% performance fee (800 basis points)
+    // If shares are worth X STX, user receives 0.92 * X after fee
+    // Then apply slippage tolerance on that reduced amount
+    const performanceFeeFactor = 0.92; // 1 - 0.08 (8% fee)
+    const expectedAssetsAfterFee = sharesMicro * performanceFeeFactor;
+    const minAssets = Math.floor(expectedAssetsAfterFee * (1 - slippagePercent));
+    
     const deadline = 999999999;
 
     await withdraw({
@@ -139,7 +159,7 @@ export function DepositWithdraw({
           <label className="block text-sm font-medium text-gray-300">
             {mode === 'deposit' ? 'Amount (STX)' : 'Shares to Withdraw'}
           </label>
-          {mode === 'deposit' && stxBalance !== null && (
+          {((mode === 'deposit' && stxBalance !== null) || (mode === 'withdraw' && shareBalance !== null)) && (
             <button
               onClick={handleMaxClick}
               disabled={loading}
@@ -167,15 +187,24 @@ export function DepositWithdraw({
           </div>
         </div>
         <div className="flex items-center justify-between mt-2">
-          {amount && parseFloat(amount) > 0 && (
+          {amount && parseFloat(amount) > 0 && mode === 'withdraw' && (
             <div className="text-xs text-gray-400">
-              ≈ {parseFloat(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 6 })}
-              {mode === 'deposit' ? ' STX' : ' shares'}
+              After 8% fee: ≈ {(parseFloat(amount) * 0.92).toFixed(6)} STX
+            </div>
+          )}
+          {amount && parseFloat(amount) > 0 && mode === 'deposit' && (
+            <div className="text-xs text-gray-400">
+              ≈ {parseFloat(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 6 })} STX
             </div>
           )}
           {mode === 'deposit' && stxBalance !== null && (
             <div className="text-xs text-gray-500">
               Balance: {(stxBalance / 1_000_000).toFixed(2)} STX
+            </div>
+          )}
+          {mode === 'withdraw' && shareBalance !== null && (
+            <div className="text-xs text-gray-500">
+              Balance: {(shareBalance / 1_000_000).toFixed(6)} Shares
             </div>
           )}
         </div>
@@ -213,9 +242,17 @@ export function DepositWithdraw({
             placeholder="Custom"
           />
         </div>
-        <p className="mt-2 text-xs text-gray-500">
-          Your transaction will revert if the price changes more than {slippage}%
-        </p>
+        {mode === 'withdraw' ? (
+          <p className="mt-2 text-xs text-gray-500">
+            Minimum you'll receive: ≈ {amount && parseFloat(amount) > 0 
+              ? (parseFloat(amount) * 0.92 * (1 - parseFloat(slippage) / 100)).toFixed(6) 
+              : '0.000000'} STX (after 8% fee + {slippage}% slippage)
+          </p>
+        ) : (
+          <p className="mt-2 text-xs text-gray-500">
+            Your transaction will revert if the price changes more than {slippage}%
+          </p>
+        )}
       </div>
 
       {/* Submit Button */}

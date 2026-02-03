@@ -82,3 +82,36 @@ DEPLOYMENT-LOG-*.md
 NOTES-*.md
 STRATEGY-*.md
 TODO-PRIVATE.md
+
+# Internal milestone documents
+WALLET-INTEGRATION-SUCCESS.md
+*-SUCCESS.md
+*-COMPLETE.md
+MILESTONE-*.md
+
+# Internal submission/checklist documents
+CODE4STX-FINAL-CHECK.md
+*-FINAL-CHECK.md
+*-CHECKLIST-PRIVATE.md
+SUBMISSION-DRAFT*.md
+
+# ========================================
+# FRONTEND INTERNAL FILES
+# ========================================
+
+# Utility scripts (local development)
+frontend/*.bat
+frontend/*.ps1
+
+# Internal development docs
+frontend/TESTING-STATUS.md
+frontend/UPGRADE-GUIDE.md
+frontend/INSTALL-DEPS.bat
+frontend/NUCLEAR-RESTART.bat
+frontend/*-GUIDE.md
+frontend/*-STATUS.md
+
+# Work-in-progress files
+frontend/src/App-*.tsx
+frontend/src/*-old.*
+frontend/src/*-backup.*

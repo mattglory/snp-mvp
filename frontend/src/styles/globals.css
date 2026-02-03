@@ -44,3 +44,18 @@ body {
   @apply text-2xl font-bold bg-gradient-to-r from-bitcoin-orange to-bitcoin-orange-dark
          bg-clip-text text-transparent;
 }
+
+/* Shimmer Animation for Skeletons */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background-size: 200% 100%;
+}

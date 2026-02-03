@@ -1,5 +1,5 @@
 # SNP (Stacks Nexus Protocol)
-## Bitcoin's First Automated Yield Aggregator
+## Self-Custodial Yield Aggregator for Bitcoin L2
 
 [![Contracts](https://img.shields.io/badge/Contracts-17-blue)](./contracts)
 [![Tests](https://img.shields.io/badge/Tests-111%2F132_Passing-brightgreen)](#testing)
@@ -7,22 +7,25 @@
 [![Testnet](https://img.shields.io/badge/Testnet-Deployed-success)](#deployment)
 [![Status](https://img.shields.io/badge/Status-Production_Ready-brightgreen)](#current-status)
 
-> **Automated yield optimization across 12+ DeFi protocols on Bitcoin's Layer 2**
+> **Fully self-custodial yield optimization across 12+ DeFi protocols on Stacks — no bridges, no wrappers, no intermediaries**
 
 ---
 
 ## 🎯 What is SNP?
 
-SNP (Stacks Nexus Protocol) is **Bitcoin's first automated yield aggregator**, enabling set-it-and-forget-it yield optimization across the Stacks DeFi ecosystem. Users deposit once and earn across 12 protocols simultaneously.
+SNP (Stacks Nexus Protocol) is a **fully self-custodial yield aggregator** built on Stacks, Bitcoin's leading Layer 2. Users maintain complete control of their assets while earning optimized yields across 12+ DeFi protocols — no custodial wrappers, no federated bridges, no intermediaries.
+
+**Why Self-Custody Matters**: Trillions of dollars in BTC remain idle because participating in yield traditionally requires giving up custody or relying on centralized intermediaries. SNP is designed from the ground up to preserve Bitcoin's trust model while unlocking DeFi yields.
 
 ### Key Innovations
 
+- **100% Self-Custodial**: Your keys, your crypto — always. Unilateral exit guaranteed
 - **3 Risk-Adjusted Vaults**: Conservative (8-10% APY), Balanced (12-16% APY), Growth (18-25% APY)
 - **12 Protocol Integrations**: ALEX, Zest, sBTC, StackSwap, Bitflow, Arkadiko, Hermetica, Velar, STX Stacking, StackingDAO, Granite
 - **Hub-and-Spoke Architecture**: Capital efficient multi-protocol optimization
 - **Smart Allocation Engine**: Automated weighted distribution with diversification limits
-- **8% Performance Fees**: Competitive fee structure aligned with user success
-- **Production-Ready**: 3,800+ lines of audited code, 111 tests passing, deployed to testnet
+- **Zero Fees**: No performance fees, no management fees — 100% of yields go to users
+- **Production-Ready**: 3,800+ lines of tested code, 111 tests passing, deployed to testnet (pre-audit)
 
 ---
 
@@ -46,7 +49,7 @@ SNP (Stacks Nexus Protocol) is **Bitcoin's first automated yield aggregator**, e
 ### What Works
 - ✅ Complete vault deposit/withdraw flows
 - ✅ Multi-strategy allocation system
-- ✅ Performance fee collection (8%)
+- ✅ Zero-fee vault architecture
 - ✅ Emergency pause/resume controls
 - ✅ First depositor attack protection
 - ✅ Slippage and deadline protection
@@ -260,15 +263,17 @@ npx vitest run tests/vault-growth.test.ts
 - Traditional: Separate capital pools per strategy
 - SNP: Shared liquidity, reduced fragmentation
 
-**4. Bitcoin-Native DeFi**
-- Built on Stacks, secured by Bitcoin
-- sBTC integration for BTC yield generation
-- First automated aggregator in Bitcoin L2 ecosystem
+**4. Bitcoin-Native & Self-Custodial**
+- Built on Stacks, secured by Bitcoin's finality
+- No custodial wrappers or federated bridges
+- sBTC integration for native BTC yield generation
+- Preserves Bitcoin's trust model while enabling DeFi
+- First self-custodial aggregator in Bitcoin L2 ecosystem
 
-**5. Transparent Fees**
-- 8% performance fees (only on profits)
+**5. Zero Fees**
+- No performance fees
 - No management fees
-- No hidden costs
+- No hidden costs — 100% of yields to users
 
 ---
 
@@ -366,36 +371,19 @@ contracts/
 - 📋 User onboarding and education
 - 📋 Performance monitoring and optimization
 
-### 📋 Phase 4: Growth (Q2-Q3 2026)
+### 📋 Phase 4: Growth & BTC Integration (Q2-Q3 2026)
 - 📋 TVL expansion ($5-10M target)
+- 📋 Native BTC staking integration (pending Stacks L1 staking release)
+- 📋 Bitcoin-denominated yield strategies
 - 📋 Additional protocol integrations
 - 📋 Advanced features (auto-compounding, analytics)
 - 📋 Cross-protocol partnerships
-- 📋 Mobile-optimized interface
 
 ### 📋 Phase 5: Decentralization (Q4 2026)
 - 📋 Governance token launch
 - 📋 DAO transition for protocol control
 - 📋 Community-driven development
 - 📋 Revenue distribution to token holders
-
----
-
-## 👨‍💻 Developer
-
-**Matt Glory**
-
-- **GitHub**: [@mattglory](https://github.com/mattglory)
-- **Twitter**: [@mattglory_](https://twitter.com/mattglory_)
-- **Discord**: geoglory
-- **Location**: Birmingham, UK
-
-### Background
-
-- **Experience**: 2+ years software development
-- **Education**: LearnWeb3.io Stacks Developer Degree
-- **Previous Work**: Trading bot development (Hummingbot)
-- **Stacks Expertise**: 4+ months intensive blockchain development
 
 ---
 
@@ -442,40 +430,4 @@ MIT License - See [LICENSE](./LICENSE)
 
 ---
 
-## 🎯 Code4STX Submission
-
-**Submission Date**: January 12, 2026
-**Category**: DeFi Infrastructure
-
-### Why SNP Represents Innovation
-
-1. **First Automated Aggregator**: Pioneer in Stacks DeFi automation
-2. **Novel Architecture**: Hub-and-spoke with risk-segmented vaults
-3. **Production Quality**: 111 tests passing, real testnet deployment
-4. **Capital Efficiency**: Shared liquidity across 12 protocols
-5. **User-Centric**: Risk profiles match user preferences automatically
-6. **Bitcoin-Secured**: Leveraging Bitcoin's security for DeFi
-7. **Transparent Development**: Open-source, well-documented, community-focused
-
-### Technical Achievements
-
-- ✅ 3,800+ lines of production Clarity code
-- ✅ Novel weighted allocation algorithm
-- ✅ Multi-vault risk management system
-- ✅ Comprehensive security features
-- ✅ 84% test coverage with advanced testing
-- ✅ Zero compilation errors
-- ✅ Real-world testnet validation
-
----
-
-## 📞 Contact & Support
-
-- **Issues**: [GitHub Issues](https://github.com/mattglory/snp-mvp/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/mattglory/snp-mvp/discussions)
-- **Twitter**: [@mattglory_](https://twitter.com/mattglory_)
-- **Discord**: geoglory
-
----
-
-**Built with ₿ on Stacks** | **Production-Ready** | **Code4STX Submission** | **January 12, 2026**
+**Self-Custodial Bitcoin Yield** | **Built on Stacks** | **Production-Ready**

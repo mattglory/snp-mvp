@@ -1,5 +1,37 @@
 # SNP Frontend - Testnet Testing Guide
 
+## 🎉 MILESTONE ACHIEVED - January 21, 2026
+
+**All three vaults successfully tested on Stacks testnet!**
+
+✅ Conservative Vault - 1,000 STX deposited & confirmed
+✅ Balanced Vault - 1,000 STX deposited & confirmed  
+✅ Growth Vault - 1,000 STX deposited & confirmed
+
+**Total: 3,000 STX deployed across SNP Protocol**
+
+Transaction IDs:
+- Balanced: `0x5cef56a84153b4a2a69b874d383379504f572a1f2ae79ab4dcd76ddb3cee1002`
+- Conservative: `0xdbe7705e434c9bfedccab9eedbc55ad1fcd9d4f812b1c13a49dda4d6ac25ea6b`
+- Growth: `0xda6b7f1047c4d3ce525689b2b77e63e9f062a723e0a3171dc3cfa80e591cf29f`
+
+All transactions confirmed with ~0.003 STX fees.
+
+### Key Technical Achievements
+
+1. **Contract Address Configuration**: Successfully updated from incorrect deployer address to `ST2H682D5RWFBHS1W3ASG3WVP5ARQVN0QABEG9BEA`
+2. **Function Parameter Matching**: Fixed deposit function to match contract signature (single `amount` parameter)
+3. **Post-Condition Security**: Implemented correct `makeStandardSTXPostCondition` for user STX transfers
+4. **Minimum Deposit Handling**: First deposit requires 1000 STX (first depositor protection)
+5. **Multi-Vault Architecture**: All three risk-adjusted vaults operational
+
+### Lessons Learned
+
+- **Contract Function Signatures**: Always verify exact parameter requirements from deployed contracts
+- **Post-Conditions**: User transfers require `makeStandardSTXPostCondition`, not `makeContractSTXPostCondition`
+- **First Depositor Protection**: Vaults require minimum 1000 STX for initial deposit to prevent manipulation
+- **Testnet Deployment**: Contract addresses must match actual testnet deployments, not local simnet
+
 ## Overview
 
 This document provides instructions for testing the SNP Protocol frontend application on the Stacks testnet. The frontend includes wallet integration and vault interaction capabilities for depositing and withdrawing assets.
